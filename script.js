@@ -64,7 +64,7 @@ onScroll();
 /* ---------- Revelado de contenido al bajar ---------- */
 if (!reducedMotion && "IntersectionObserver" in window) {
   const items = document.querySelectorAll(
-    ".section-head, .approach, .service-group, .process-step, .case-tile, .audience, .faq-layout > *, .contact-layout > *",
+    ".section-head, .approach, .svc-filter, .svc-layout, .route, .process-step, .case-tile, .audience, .faq-layout > *, .contact-layout > *",
   );
   items.forEach((el, i) => {
     el.classList.add("reveal");
@@ -169,6 +169,75 @@ form.addEventListener("submit", async (event) => {
       : `Escríbenos por mensaje directo a ${CONFIG.instagramHandle} en Instagram.`,
   );
 });
+
+/* ---------- Carta de servicios: filtro por objetivo, detalle y mira ---------- */
+const services = [...document.querySelectorAll(".svc")];
+const chips = [...document.querySelectorAll(".svc-chip")];
+const target = document.querySelector(".target");
+const targetKicker = document.getElementById("target-kicker");
+const targetName = document.getElementById("target-name");
+const targetNote = document.getElementById("target-note");
+const targetDefault = { kicker: targetKicker?.textContent, name: targetName?.textContent, note: targetNote?.textContent };
+
+function showOnTarget(svc) {
+  if (!target) return;
+  if (!svc) {
+    target.dataset.active = "";
+    targetKicker.textContent = targetDefault.kicker;
+    targetName.textContent = targetDefault.name;
+    targetNote.textContent = targetDefault.note;
+    return;
+  }
+  target.dataset.active = svc.dataset.ring;
+  targetKicker.textContent = svc.dataset.kicker;
+  targetName.textContent = svc.querySelector(".svc-name").textContent;
+  targetNote.textContent = svc.dataset.note;
+}
+const openService = () => services.find((s) => s.querySelector("details").open);
+
+function setFilter(goal) {
+  chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.filter === goal)));
+  services.forEach((s) => {
+    const match = goal === "todos" || s.dataset.goals.split(" ").includes(goal);
+    s.classList.toggle("is-dim", !match);
+    s.classList.toggle("is-match", match && goal !== "todos");
+  });
+  // Al elegir un objetivo, se abre el servicio principal para ese objetivo
+  const primary = services.find((s) => s.dataset.primary === goal) || null;
+  services.forEach((s) => { s.querySelector("details").open = s === primary; });
+  showOnTarget(primary);
+}
+chips.forEach((chip) => chip.addEventListener("click", () => setFilter(chip.dataset.filter)));
+
+services.forEach((svc) => {
+  const details = svc.querySelector("details");
+  svc.addEventListener("pointerenter", () => showOnTarget(svc));
+  svc.addEventListener("pointerleave", () => showOnTarget(openService() || null));
+  details.addEventListener("toggle", () => {
+    if (details.open) {
+      // Un servicio abierto a la vez, para que la carta se lea fácil
+      services.forEach((other) => { if (other !== svc) other.querySelector("details").open = false; });
+      svc.classList.remove("is-dim");
+      showOnTarget(svc);
+    } else if (!openService()) {
+      showOnTarget(null);
+    }
+  });
+});
+
+// "¿Qué necesitas hoy?" del hero: lleva a la carta con el objetivo ya elegido
+document.querySelectorAll(".goal").forEach((link) =>
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    setFilter(link.dataset.goal);
+    // Con la mira visible se muestra la carta completa; sin ella, el servicio abierto
+    const withTarget = window.matchMedia("(min-width: 1101px)").matches;
+    const destination = withTarget
+      ? document.getElementById("carta")
+      : services.find((s) => s.dataset.primary === link.dataset.goal) || document.getElementById("carta");
+    destination.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+  }),
+);
 
 document.getElementById("year").textContent = String(new Date().getFullYear());
 
