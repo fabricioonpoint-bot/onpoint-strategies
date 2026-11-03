@@ -153,7 +153,7 @@ p { margin: 0; }
 
 /* ---------- Hero (negro: 30% de la marca) ---------- */
 .hero { background: var(--negro); color: var(--blanco); overflow: hidden; position: relative; }
-.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 640px); align-items: center; padding: 88px 0 96px; min-height: min(calc(100svh - var(--header-h)), 900px); pointer-events: none; }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, min(640px, 46vw)); align-items: center; padding: 88px 0 96px; min-height: min(calc(100svh - var(--header-h)), 900px); pointer-events: none; }
 .hero-copy > * { pointer-events: auto; }
 .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--plomo-claro); }
 .eyebrow::before { content: ""; width: 24px; height: 1.5px; background: var(--plomo-claro); }
@@ -167,13 +167,13 @@ p { margin: 0; }
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 34%;
+  left: 36%;
   right: 0;
   margin: 0;
   z-index: 0;
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 72% 70% at 56% 50%, #000 58%, transparent 100%);
-  mask-image: radial-gradient(ellipse 72% 70% at 56% 50%, #000 58%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 85% at 52% 50%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 85% at 52% 50%, #000 72%, transparent 100%);
   will-change: transform, opacity;
 }
 .orbit { width: 100%; height: 100%; display: block; overflow: visible; }
@@ -187,7 +187,7 @@ p { margin: 0; }
 .o-sat { fill: var(--plomo-claro); }
 .o-star { fill: var(--blanco); }
 .o-halo { fill: none; stroke: var(--plomo); stroke-opacity: 0.5; stroke-width: 1.2; transform-box: fill-box; transform-origin: center; }
-.o-core { stroke: var(--grafito); stroke-width: 2; }
+.o-core { fill: var(--negro); stroke: none; }
 .o-dot { fill: var(--blanco); }
 .o-node-halo { fill: none; stroke: var(--blanco); stroke-opacity: 0.35; stroke-width: 1.2; }
 .o-label { fill: var(--blanco); font-family: var(--mono); font-size: 15px; font-weight: 500; letter-spacing: 0.18em; }

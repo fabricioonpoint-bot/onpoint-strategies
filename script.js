@@ -333,7 +333,7 @@ document.querySelectorAll(".goal").forEach((link) =>
   const measure = () => {
     const rect = svg.getBoundingClientRect();
     if (!rect.width) return;
-    const scale = Math.max(rect.width / 1000, rect.height / 800);
+    const scale = Math.min(rect.width / 860, rect.height / 580);
     const visW = rect.width / scale;
     const absolute = getComputedStyle(stage).position === "absolute";
     const left = 500 - visW / 2;
@@ -532,7 +532,7 @@ document.querySelectorAll(".goal").forEach((link) =>
   function loop(now) {
     if (running && !document.hidden) {
       const g = scrollGrow();
-      stage.style.opacity = (1 - g * 0.85).toFixed(3);
+      stage.style.opacity = (1 - Math.max(0, g - 0.25) * 0.8).toFixed(3);
       stage.style.transform = `translate3d(0, ${(g * 36).toFixed(1)}px, 0) scale(${(1 + g * 0.14).toFixed(3)})`;
       frame((now - t0) / 1000, g);
     }
