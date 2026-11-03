@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 
   <script type="application/ld+json">
   {
@@ -69,6 +69,51 @@
   <main id="main">
     <!-- ================= HERO ================= -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <!-- Órbita: estrategia, identidad y campañas giran alrededor de tu negocio. Se funde con el fondo, sin caja. -->
+      <figure class="hero-stage" id="hero-stage">
+        <svg class="orbit" id="orbit" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="orbit-title orbit-desc">
+          <title id="orbit-title">Estrategia, identidad y campañas alrededor de tu negocio</title>
+          <desc id="orbit-desc">Tres anillos en perspectiva giran alrededor del isotipo de On Point. Sobre ellos se mueven tres puntos: 01 Estrategia, definir el rumbo; 02 Identidad, construir confianza; 03 Campañas, iniciar la conversación.</desc>
+          <defs>
+            <radialGradient id="orbit-glow" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" stop-color="#9BA0A6" stop-opacity="0.22" />
+              <stop offset="0.35" stop-color="#9BA0A6" stop-opacity="0.08" />
+              <stop offset="1" stop-color="#9BA0A6" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="orbit-core" cx="0.38" cy="0.34" r="0.75">
+              <stop offset="0" stop-color="#26282c" />
+              <stop offset="1" stop-color="#0A0A0B" />
+            </radialGradient>
+          </defs>
+          <circle class="o-glow" cx="500" cy="400" r="560" fill="url(#orbit-glow)" />
+          <g class="o-stars"></g>
+          <ellipse class="o-ring o-ring-far" cx="500" cy="400" rx="520" ry="150" />
+          <g class="o-ripples"><ellipse class="o-ripple" cx="500" cy="400" rx="60" ry="24" /><ellipse class="o-ripple" cx="500" cy="400" rx="60" ry="24" /></g>
+          <g class="o-halves-back"><path class="o-half" /><path class="o-half" /><path class="o-half" /></g>
+          <g class="o-trails"></g>
+          <g class="o-sats-back"></g>
+          <g class="o-links"><path class="o-link" /><path class="o-link" /><path class="o-link" /></g>
+          <g class="o-back"></g>
+          <circle class="o-halo" cx="500" cy="400" r="118" />
+          <circle class="o-core" cx="500" cy="400" r="104" fill="url(#orbit-core)" />
+          <!-- Isotipo: se arma como en el logo animado (tics, anillo, punto) -->
+          <svg class="iso" x="415" y="315" width="170" height="170" viewBox="0 0 120 120" aria-hidden="true">
+            <path class="iso-tic iso-tic-t" d="M60 4V14" /><path class="iso-tic iso-tic-b" d="M60 106V116" />
+            <path class="iso-tic iso-tic-l" d="M4 60H14" /><path class="iso-tic iso-tic-r" d="M106 60H116" />
+            <circle class="iso-ring" cx="60" cy="60" r="32" pathLength="1" />
+            <circle class="iso-dot" cx="60" cy="60" r="10.5" />
+          </svg>
+          <g class="o-halves-front"><path class="o-half" /><path class="o-half" /><path class="o-half" /></g>
+          <g class="o-sats-front"></g>
+          <g class="o-front">
+            <g class="o-node"><circle class="o-node-halo" r="18" /><circle class="o-dot" r="7" /><text class="o-label">01 / ESTRATEGIA</text><text class="o-caption">Definir el rumbo.</text></g>
+            <g class="o-node"><circle class="o-node-halo" r="18" /><circle class="o-dot" r="7" /><text class="o-label">02 / IDENTIDAD</text><text class="o-caption">Construir confianza.</text></g>
+            <g class="o-node"><circle class="o-node-halo" r="18" /><circle class="o-dot" r="7" /><text class="o-label">03 / CAMPAÑAS</text><text class="o-caption">Iniciar la conversación.</text></g>
+          </g>
+        </svg>
+      </figure>
+      <p class="stage-foot mono">Lima, Perú</p>
+
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow mono">Marketing e identidad · Lima</p>
@@ -101,69 +146,13 @@
             <a class="text-link" href="#servicios">Ver los 5 servicios <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-
-        <!-- Órbita: estrategia, identidad y campañas giran alrededor de tu negocio -->
-        <figure class="hero-stage">
-          <svg class="orbit" id="orbit" viewBox="0 0 640 470" role="img" aria-labelledby="orbit-title orbit-desc">
-            <title id="orbit-title">Estrategia, identidad y campañas alrededor de tu negocio</title>
-            <desc id="orbit-desc">Tres anillos en perspectiva giran alrededor del isotipo de On Point. Sobre ellos se mueven tres puntos: 01 Estrategia, definir el rumbo; 02 Identidad, construir confianza; 03 Campañas, iniciar la conversación.</desc>
-            <defs>
-              <radialGradient id="orbit-floor">
-                <stop offset="0" stop-color="#9BA0A6" stop-opacity=".18" />
-                <stop offset="1" stop-color="#9BA0A6" stop-opacity="0" />
-              </radialGradient>
-            </defs>
-            <ellipse class="o-floor" cx="320" cy="235" rx="270" ry="97" fill="url(#orbit-floor)" />
-            <g class="o-ripples">
-              <ellipse class="o-ripple" cx="320" cy="235" rx="40" ry="16" />
-              <ellipse class="o-ripple" cx="320" cy="235" rx="120" ry="48" />
-            </g>
-            <g class="o-rings">
-              <ellipse class="o-ring" cx="320" cy="235" rx="112" ry="45" />
-              <ellipse class="o-ring" cx="320" cy="235" rx="172" ry="69" />
-              <ellipse class="o-ring" cx="320" cy="235" rx="232" ry="93" />
-            </g>
-            <g class="o-links">
-              <path class="o-link" d="M222 300L320 235" />
-              <path class="o-link" d="M480 245L320 235" />
-              <path class="o-link" d="M300 362L320 235" />
-            </g>
-            <g class="o-back"></g>
-            <!-- Isotipo: se arma como en el logo animado (tics, anillo, punto) -->
-            <circle class="o-core" cx="320" cy="235" r="74" />
-            <svg class="iso" x="250" y="165" width="140" height="140" viewBox="0 0 120 120" aria-hidden="true">
-              <path class="iso-tic iso-tic-t" d="M60 4V14" /><path class="iso-tic iso-tic-b" d="M60 106V116" />
-              <path class="iso-tic iso-tic-l" d="M4 60H14" /><path class="iso-tic iso-tic-r" d="M106 60H116" />
-              <circle class="iso-ring" cx="60" cy="60" r="32" pathLength="1" />
-              <circle class="iso-dot" cx="60" cy="60" r="10.5" />
-            </svg>
-            <g class="o-front">
-              <g class="o-node" transform="translate(222 300)">
-                <circle class="o-halo" r="16" /><circle class="o-dot" r="6" />
-                <text class="o-label" x="-16" y="-16" text-anchor="end">01 / ESTRATEGIA</text>
-                <text class="o-caption" x="-16" y="4" text-anchor="end">Definir el rumbo.</text>
-              </g>
-              <g class="o-node" transform="translate(480 245)">
-                <circle class="o-halo" r="16" /><circle class="o-dot" r="6" />
-                <text class="o-label" x="16" y="-16">02 / IDENTIDAD</text>
-                <text class="o-caption" x="16" y="4">Construir confianza.</text>
-              </g>
-              <g class="o-node" transform="translate(300 362)">
-                <circle class="o-halo" r="16" /><circle class="o-dot" r="6" />
-                <text class="o-label" x="-16" y="-16" text-anchor="end">03 / CAMPAÑAS</text>
-                <text class="o-caption" x="-16" y="4" text-anchor="end">Iniciar la conversación.</text>
-              </g>
-            </g>
-          </svg>
-          <figcaption class="stage-foot mono">Lima, Perú</figcaption>
-        </figure>
       </div>
     </section>
 
     <div class="strip" aria-hidden="true">
       <div class="strip-track">
-        <span>Tarjetas S/179</span><i></i><span>Kit comercial S/449</span><i></i><span>Identidad desde S/890</span><i></i><span>Captación S/1,190 al mes, anuncios incluidos</span><i></i><span>Crecimiento S/1,890 al mes</span><i></i>
-        <span>Tarjetas S/179</span><i></i><span>Kit comercial S/449</span><i></i><span>Identidad desde S/890</span><i></i><span>Captación S/1,190 al mes, anuncios incluidos</span><i></i><span>Crecimiento S/1,890 al mes</span><i></i>
+        <span>Tarjetas S/179</span><i></i><span>Kit comercial S/449</span><i></i><span>Identidad aprox. S/890–1,490</span><i></i><span>Captación S/1,190 al mes, anuncios incluidos</span><i></i><span>Crecimiento S/1,890 al mes</span><i></i>
+        <span>Tarjetas S/179</span><i></i><span>Kit comercial S/449</span><i></i><span>Identidad aprox. S/890–1,490</span><i></i><span>Captación S/1,190 al mes, anuncios incluidos</span><i></i><span>Crecimiento S/1,890 al mes</span><i></i>
       </div>
     </div>
 
@@ -213,23 +202,43 @@
         <div class="svc-layout">
           <!-- Mira: el punto es tu marca; los anillos, lo que la pone a trabajar -->
           <aside class="svc-target" aria-hidden="true">
-            <svg class="target" viewBox="0 0 320 320" data-active="">
-              <g class="t-guides"><path d="M160 6v308M6 160h308" /></g>
-              <circle class="t-ring t-ring-3" cx="160" cy="160" r="138" />
-              <circle class="t-ring t-ring-2" cx="160" cy="160" r="96" />
-              <circle class="t-ring t-ring-1" cx="160" cy="160" r="54" />
-              <circle class="t-dot" cx="160" cy="160" r="20" />
-              <g class="t-tics"><path d="M160 0v14M160 306v14M0 160h14M306 160h14" /></g>
+            <svg class="target" viewBox="0 0 360 360" data-active="">
+              <g class="t-guides"><path d="M180 6v348M6 180h348" /></g>
+              <circle class="t-pulse" cx="180" cy="180" r="24" />
+              <circle class="t-ring t-ring-3" cx="180" cy="180" r="150" pathLength="1" transform="rotate(-90 180 180)" />
+              <circle class="t-ring t-ring-2" cx="180" cy="180" r="104" pathLength="1" transform="rotate(-90 180 180)" />
+              <circle class="t-ring t-ring-1" cx="180" cy="180" r="58" pathLength="1" transform="rotate(-90 180 180)" />
+              <g class="t-orbit t-orbit-1"><circle cx="180" cy="122" r="5" /></g>
+              <g class="t-orbit t-orbit-2"><circle cx="180" cy="76" r="5" /></g>
+              <g class="t-orbit t-orbit-3"><circle cx="180" cy="30" r="5" /></g>
+              <circle class="t-dot" cx="180" cy="180" r="22" />
+              <g class="t-tics"><path d="M180 0v16M180 344v16M0 180h16M344 180h16" /></g>
+              <!-- Ícono de cada anillo -->
+              <g class="t-badge t-badge-1" transform="translate(221 139)">
+                <circle r="15" />
+                <path d="M-8 -5.5h16v11h-16z M-5 -1.5h7 M-5 2h4" />
+              </g>
+              <g class="t-badge t-badge-2" transform="translate(253.5 106.5)">
+                <circle r="15" />
+                <path d="M-7.5 -6.5h15a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1 -1.5 1.5h-8.5l-4.5 3.5v-3.5h-2a1.5 1.5 0 0 1 -1.5 -1.5v-7.5a1.5 1.5 0 0 1 1.5 -1.5z" />
+              </g>
+              <g class="t-badge t-badge-3" transform="translate(286 74)">
+                <circle r="15" />
+                <path d="M-7.5 6l5-5.5 3 3 6.5-7.5 M2.5 -4h4.5v4.5" />
+              </g>
+              <!-- Nombre de cada anillo -->
+              <g class="t-tag t-tag-1" transform="translate(180 238)"><rect y="-10" height="20" rx="10" /><text dominant-baseline="central" text-anchor="middle">IMAGEN</text></g>
+              <g class="t-tag t-tag-2" transform="translate(180 284)"><rect y="-10" height="20" rx="10" /><text dominant-baseline="central" text-anchor="middle">CAPTACIÓN</text></g>
+              <g class="t-tag t-tag-3" transform="translate(180 330)"><rect y="-10" height="20" rx="10" /><text dominant-baseline="central" text-anchor="middle">CRECIMIENTO</text></g>
             </svg>
             <div class="target-read" aria-live="polite">
-              <p class="mono target-kicker" id="target-kicker">Pasa por un servicio</p>
               <p class="target-name" id="target-name">El punto es tu marca.</p>
               <p class="target-note" id="target-note">Los anillos son lo que la pone a trabajar: primero te ven, después te escriben.</p>
             </div>
           </aside>
 
           <ol class="svc-list">
-            <li class="svc" data-goals="imagen" data-ring="1" data-kicker="Imagen · Pago único" data-note="S/179 el pack completo: evaluación, diseño, 1,000 impresas y envío en Lima.">
+            <li class="svc" data-goals="imagen" data-ring="1" data-note="S/179 el pack completo: evaluación, diseño, 1,000 impresas y envío en Lima.">
               <details>
                 <summary>
                   <span class="svc-idx mono">01</span>
@@ -257,7 +266,7 @@
               </details>
             </li>
 
-            <li class="svc" data-goals="imagen clientes" data-ring="1" data-kicker="Imagen · Pago único" data-note="S/449 por proyecto. Creamos o renovamos tus redes y las dejamos listas para vender.">
+            <li class="svc" data-goals="imagen clientes" data-ring="1" data-note="S/449 por proyecto. Creamos o renovamos tus redes y las dejamos listas para vender.">
               <details>
                 <summary>
                   <span class="svc-idx mono">02</span>
@@ -287,16 +296,16 @@
               </details>
             </li>
 
-            <li class="svc" data-goals="imagen" data-primary="imagen" data-ring="1" data-kicker="Imagen · Pago único" data-note="Desde S/890. Logo, sistema visual y librito de marca de 16 páginas.">
+            <li class="svc" data-goals="imagen" data-primary="imagen" data-ring="1" data-note="Aprox. S/890 a S/1,490 según el alcance. Incluye el librito de marca de 16 páginas.">
               <details>
                 <summary>
                   <span class="svc-idx mono">03</span>
                   <span class="svc-main">
-                    <span class="svc-tags"><span class="tag">Pago único</span><span class="tag">Se puede ampliar</span></span>
+                    <span class="svc-tags"><span class="tag">Pago único</span><span class="tag">Según alcance</span></span>
                     <span class="svc-name">Identidad de marca</span>
                     <span class="svc-promise">Una marca que se ve igual de seria en todas partes.</span>
                   </span>
-                  <span class="svc-price"><small class="pre">desde</small>S/890</span>
+                  <span class="svc-price"><small class="pre">aprox.</small>S/890–1,490</span>
                   <span class="svc-toggle" aria-hidden="true"></span>
                 </summary>
                 <div class="svc-body">
@@ -309,14 +318,14 @@
                     <li>3 plantillas editables en Canva</li>
                   </ul>
                   <div class="svc-actions">
-                    <a class="btn btn-dark plan-link" href="#contacto" data-plan="Identidad de marca — desde S/890">Quiero mi identidad <span aria-hidden="true">↗</span></a>
+                    <a class="btn btn-dark plan-link" href="#contacto" data-plan="Identidad de marca — aprox. S/890 a S/1,490">Quiero mi identidad <span aria-hidden="true">↗</span></a>
                     <a class="text-link" href="#identidad">Ver el librito por dentro <span aria-hidden="true">↓</span></a>
                   </div>
                 </div>
               </details>
             </li>
 
-            <li class="svc svc-featured" data-goals="clientes" data-primary="clientes" data-ring="2" data-kicker="Captación · Mensual" data-note="S/1,190 al mes con S/400 de anuncios incluidos, en Meta Ads o TikTok Ads.">
+            <li class="svc svc-featured" data-goals="clientes" data-primary="clientes" data-ring="2" data-note="S/1,190 al mes con S/400 de anuncios incluidos, en Meta Ads o TikTok Ads.">
               <details>
                 <summary>
                   <span class="svc-idx mono">04</span>
@@ -345,7 +354,7 @@
               </details>
             </li>
 
-            <li class="svc" data-goals="crecer clientes" data-primary="crecer" data-ring="3" data-kicker="Crecimiento · Mensual" data-note="S/1,890 al mes con S/600 de anuncios incluidos y un embudo que termina en tu WhatsApp.">
+            <li class="svc" data-goals="crecer clientes" data-primary="crecer" data-ring="3" data-note="S/1,890 al mes con S/600 de anuncios incluidos y un embudo que termina en tu WhatsApp.">
               <details>
                 <summary>
                   <span class="svc-idx mono">05</span>
@@ -410,63 +419,146 @@
     <section class="section section-dark identity" id="identidad" aria-labelledby="identidad-title">
       <div class="container">
         <div class="section-head">
-          <div><p class="kicker mono">04 / Identidad de marca</p><h2 id="identidad-title">Tu marca, en un librito<br />de 16 páginas.</h2></div>
-          <p class="section-intro">Una identidad no es solo un logo. Te entregamos el sistema completo y las reglas para usarlo, para que tu marca se vea igual la haga quien la haga.</p>
+          <div><p class="kicker mono">04 / Identidad de marca · nuestro propio caso</p><h2 id="identidad-title">Tu marca, en un librito<br />de 16 páginas.</h2></div>
+          <p class="section-intro">Una identidad no es solo un logo. Te entregamos el sistema completo y las reglas para usarlo, para que tu marca se vea igual la haga quien la haga. Hojea el nuestro.</p>
         </div>
 
         <div class="id-layout">
-          <div class="book-stage" id="book">
-            <div class="book" aria-live="polite">
-              <!-- Páginas del librito: ejemplo con nuestra propia marca -->
-              <article class="page page-cover" data-page="0" aria-label="Portada">
-                <img src="assets/brand/ops-isotipo-blanco.svg" alt="" width="56" height="56" />
-                <div><p class="pg-title">Librito<br />de marca</p><p class="mono pg-sub">On Point Strategies · v1.0</p></div>
+          <div class="book-stage">
+            <div class="flipbook" id="flipbook" tabindex="0" role="region" aria-roledescription="libro" aria-label="Librito de marca de On Point Strategies. Usa las flechas para pasar las páginas.">
+              <div class="fb-pages"></div>
+            </div>
+            <div class="fb-controls">
+              <button type="button" class="fb-btn" id="fb-prev" aria-label="Página anterior"><span aria-hidden="true">←</span></button>
+              <p class="fb-count mono" id="fb-count" aria-live="polite">Portada</p>
+              <button type="button" class="fb-btn" id="fb-next" aria-label="Página siguiente"><span aria-hidden="true">→</span></button>
+            </div>
+            <p class="book-note mono">Toca la página o desliza para hojear · Ejemplo con nuestra propia marca</p>
+
+            <!-- Las 16 páginas del librito (el script las arma como libro) -->
+            <template id="book-pages">
+              <article class="bp bp-dark bp-cover" aria-label="Portada">
+                <img src="assets/brand/ops-isotipo-blanco.svg" alt="" class="bp-iso" width="60" height="60" />
+                <div><p class="bp-display">Librito<br />de marca</p><p class="bp-mono bp-soft">On Point Strategies · v1.0 · 2026</p></div>
+                <p class="bp-mono bp-soft bp-corner">A5 · 16 páginas</p>
               </article>
-              <article class="page page-logo" data-page="1" aria-label="El logo: versiones y construcción">
-                <p class="mono pg-head">04–05 / El logo</p>
-                <svg viewBox="0 0 120 120" class="pg-iso" aria-hidden="true">
-                  <circle cx="60" cy="60" r="50" class="g" /><circle cx="60" cy="60" r="42" class="g" />
+              <article class="bp" aria-label="Página 2, quiénes somos">
+                <p class="bp-head">02 / Quiénes somos</p>
+                <p class="bp-title">Estrategia primero. Después, la pieza.</p>
+                <p class="bp-text">Construimos el nombre, el logo y el sistema visual, y después los ponemos a trabajar en campañas medibles.</p>
+                <p class="bp-text bp-strong">No vendemos piezas sueltas: vendemos criterio.</p>
+              </article>
+              <article class="bp" aria-label="Página 3, la promesa">
+                <p class="bp-head">03 / La promesa</p>
+                <img src="assets/brand/ops-isotipo.svg" alt="" class="bp-hero-iso" width="120" height="120" />
+                <p class="bp-title bp-center">Dar en el punto, no cerca del punto.</p>
+                <p class="bp-mono bp-center bp-soft">Precisa · Sobria · Directa</p>
+              </article>
+              <article class="bp" aria-label="Página 4, el logo">
+                <p class="bp-head">04 / El logo</p>
+                <div class="bp-panel"><img src="assets/brand/ops-logo-horizontal.svg" alt="" width="200" height="57" /></div>
+                <div class="bp-row">
+                  <div class="bp-mini"><img src="assets/brand/ops-logo-vertical.svg" alt="" width="70" height="61" /><span class="bp-mono">Vertical</span></div>
+                  <div class="bp-mini"><img src="assets/brand/ops-isotipo.svg" alt="" width="40" height="40" /><span class="bp-mono">Isotipo</span></div>
+                </div>
+              </article>
+              <article class="bp" aria-label="Página 5, construcción del isotipo">
+                <p class="bp-head">05 / Construcción</p>
+                <svg viewBox="0 0 120 120" class="bp-build" aria-hidden="true">
+                  <circle cx="60" cy="60" r="52" class="g" /><circle cx="60" cy="60" r="42" class="g" /><path d="M60 0v120M0 60h120" class="g" />
                   <path d="M60 4V14M60 106V116M4 60H14M106 60H116" class="t" />
                   <circle cx="60" cy="60" r="32" class="r" /><circle cx="60" cy="60" r="10.5" class="d" />
                 </svg>
-                <dl class="mono pg-specs"><div><dt>Anillo</dt><dd>Ø 64 u</dd></div><div><dt>Trazo</dt><dd>7 u</dd></div><div><dt>Punto</dt><dd>Ø 21 u</dd></div><div><dt>Tic</dt><dd>10 × 3 u</dd></div></dl>
+                <dl class="bp-specs"><div><dt>Anillo</dt><dd>Ø 64 u</dd></div><div><dt>Trazo</dt><dd>7 u</dd></div><div><dt>Punto</dt><dd>Ø 21 u</dd></div><div><dt>Tic</dt><dd>10 × 3 u</dd></div></dl>
               </article>
-              <article class="page page-color" data-page="2" aria-label="Paleta de color">
-                <p class="mono pg-head">08–09 / Paleta</p>
-                <div class="pg-swatches"><span style="--c:#0A0A0B">Negro Tinta<br /><i>#0A0A0B</i></span><span style="--c:#1C1D20">Grafito<br /><i>#1C1D20</i></span><span style="--c:#6E7278">Plomo<br /><i>#6E7278</i></span><span style="--c:#F6F6F5" class="light">Papel<br /><i>#F6F6F5</i></span></div>
-                <div class="pg-ratio"><span style="--w:60%"></span><span style="--w:30%"></span><span style="--w:10%"></span></div>
-                <p class="mono pg-foot">Uso 60 / 30 / 10</p>
+              <article class="bp" aria-label="Página 6, versiones y fondos">
+                <p class="bp-head">06 / Versiones y fondos</p>
+                <div class="bp-grid4">
+                  <span class="bg-white"><img src="assets/brand/ops-isotipo.svg" alt="" width="34" height="34" /></span>
+                  <span class="bg-paper"><img src="assets/brand/ops-isotipo.svg" alt="" width="34" height="34" /></span>
+                  <span class="bg-plomo"><img src="assets/brand/ops-isotipo-blanco.svg" alt="" width="34" height="34" /></span>
+                  <span class="bg-black"><img src="assets/brand/ops-isotipo-blanco.svg" alt="" width="34" height="34" /></span>
+                </div>
+                <p class="bp-mono bp-soft">Dos archivos, nada más</p>
               </article>
-              <article class="page page-type" data-page="3" aria-label="Tipografías">
-                <p class="mono pg-head">10–11 / Tipografías</p>
-                <p class="pg-aa">Aa</p>
-                <p class="pg-face">Archivo<br /><small>Títulos · 400–700</small></p>
-                <p class="mono pg-face-mono">IBM Plex Mono<br />+18% · ROAS 4.2</p>
+              <article class="bp" aria-label="Página 7, qué no hacer con el logo">
+                <p class="bp-head">07 / Qué no hacer</p>
+                <div class="bp-grid4 bp-donts">
+                  <span><img src="assets/brand/ops-isotipo.svg" alt="" width="34" height="34" class="d-stretch" /><i>No deformar</i></span>
+                  <span><img src="assets/brand/ops-isotipo.svg" alt="" width="34" height="34" class="d-rotate" /><i>No rotar</i></span>
+                  <span><svg viewBox="0 0 120 120" width="34" height="34" aria-hidden="true"><circle cx="60" cy="60" r="32" fill="none" stroke="#0A0A0B" stroke-width="7" stroke-dasharray="6 6" /><circle cx="60" cy="60" r="10.5" fill="#0A0A0B" /></svg><i>No alterar el trazo</i></span>
+                  <span class="bg-plomo"><img src="assets/brand/ops-isotipo.svg" alt="" width="34" height="34" /><i>No negro sobre plomo</i></span>
+                </div>
               </article>
-              <article class="page page-voice" data-page="4" aria-label="Tono de voz">
-                <p class="mono pg-head">12–13 / Tono de voz</p>
-                <p class="pg-yes"><span class="mono">Sí decimos</span>Resultados, no adjetivos.</p>
-                <p class="pg-no"><span class="mono">No decimos</span>«La mejor agencia del Perú».</p>
+              <article class="bp" aria-label="Página 8, paleta de color">
+                <p class="bp-head">08 / Paleta</p>
+                <div class="bp-swatches">
+                  <span style="--c:#0A0A0B"><b>Negro Tinta</b><i>#0A0A0B</i></span>
+                  <span style="--c:#1C1D20"><b>Grafito</b><i>#1C1D20</i></span>
+                  <span style="--c:#6E7278"><b>Plomo</b><i>#6E7278</i></span>
+                  <span style="--c:#9BA0A6"><b>Plomo Claro</b><i>#9BA0A6</i></span>
+                </div>
               </article>
-              <article class="page page-apps" data-page="5" aria-label="Aplicaciones">
-                <p class="mono pg-head">14 / Aplicaciones</p>
-                <div class="pg-card"><img src="assets/brand/ops-isotipo-blanco.svg" alt="" width="16" height="16" /><span>Estrategia primero.</span></div>
-                <div class="pg-post"><span class="mono">Estrategia / 01</span><b>Si le hablas a todos, no le hablas a nadie.</b></div>
+              <article class="bp" aria-label="Página 9, colores de apoyo y proporción">
+                <p class="bp-head">09 / Apoyo y proporción</p>
+                <div class="bp-chips"><span style="--c:#C9CCD1">Niebla</span><span style="--c:#E8E9EB">Humo</span><span style="--c:#F6F6F5">Papel</span><span style="--c:#FFFFFF">Blanco</span></div>
+                <div class="bp-ratio"><span style="--w:60%">60</span><span style="--w:30%">30</span><span style="--w:10%">10</span></div>
+                <p class="bp-text">60% blanco o papel, 30% negro y 10% plomo, el único acento.</p>
               </article>
-            </div>
-            <p class="book-note mono">Ejemplo: el librito de nuestra propia marca</p>
+              <article class="bp" aria-label="Página 10, tipografía principal">
+                <p class="bp-head">10 / Tipografía</p>
+                <p class="bp-aa">Aa</p>
+                <p class="bp-title">Archivo</p>
+                <p class="bp-mono bp-soft">Grotesca variable · 400–700</p>
+                <p class="bp-text bp-abc">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ<br />0123456789 ¿? ¡! %</p>
+              </article>
+              <article class="bp" aria-label="Página 11, jerarquía tipográfica">
+                <p class="bp-head">11 / Jerarquía</p>
+                <div class="bp-scale">
+                  <p><span class="bp-mono bp-soft">H1 · 46</span><b class="s1">Titular</b></p>
+                  <p><span class="bp-mono bp-soft">Subtítulo · 24</span><b class="s2">Subtítulo de apoyo</b></p>
+                  <p><span class="bp-mono bp-soft">Cuerpo · 16</span><span class="s3">Texto corrido para explicar con claridad.</span></p>
+                </div>
+                <p class="bp-mono bp-plex">IBM Plex Mono · +18% · ROAS 4.2</p>
+              </article>
+              <article class="bp" aria-label="Página 12, tono de voz: lo que sí decimos">
+                <p class="bp-head">12 / Tono · Sí decimos</p>
+                <ul class="bp-list bp-yes"><li>Resultados, no adjetivos.</li><li>Lo que pagas es lo que ves.</li><li>Primero entendemos tu negocio.</li></ul>
+              </article>
+              <article class="bp" aria-label="Página 13, tono de voz: lo que no decimos">
+                <p class="bp-head">13 / Tono · No decimos</p>
+                <ul class="bp-list bp-no"><li>«La mejor agencia del Perú.»</li><li>«Soluciones 360°.»</li><li>«Te garantizamos ventas.»</li></ul>
+              </article>
+              <article class="bp" aria-label="Página 14, aplicaciones">
+                <p class="bp-head">14 / Aplicaciones</p>
+                <div class="bp-card"><img src="assets/brand/ops-isotipo-blanco.svg" alt="" width="18" height="18" /><b>Estrategia primero.</b><span class="bp-mono">Tarjeta · 90 × 50 mm</span></div>
+                <div class="bp-post"><span class="bp-mono">Estrategia / 01</span><b>Si le hablas a todos, no le hablas a nadie.</b><span class="bp-mono">Post · 1:1</span></div>
+              </article>
+              <article class="bp" aria-label="Página 15, contacto">
+                <p class="bp-head">15 / Contacto</p>
+                <p class="bp-display bp-ink">Hablemos.</p>
+                <p class="bp-text">Instagram<br /><b>@onpoint.mkt.pe</b></p>
+                <p class="bp-text">Lima, Perú</p>
+                <img src="assets/brand/ops-isotipo.svg" alt="" class="bp-end-iso" width="34" height="34" />
+              </article>
+              <article class="bp bp-dark bp-back" aria-label="Contraportada">
+                <img src="assets/brand/ops-logo-vertical-blanco.svg" alt="" width="150" height="130" />
+                <p class="bp-mono bp-soft">Dar en el punto, no cerca del punto.</p>
+              </article>
+            </template>
           </div>
 
           <div class="id-copy">
-            <ol class="toc" role="tablist" aria-label="Contenido del librito">
-              <li><button type="button" role="tab" data-go="0" aria-selected="true"><span class="mono">01</span>Portada</button></li>
-              <li><button type="button" role="tab" data-go="1" aria-selected="false"><span class="mono">04</span>El logo: versiones y usos</button></li>
-              <li><button type="button" role="tab" data-go="2" aria-selected="false"><span class="mono">08</span>Paleta de color</button></li>
-              <li><button type="button" role="tab" data-go="3" aria-selected="false"><span class="mono">10</span>Tipografías y jerarquía</button></li>
-              <li><button type="button" role="tab" data-go="4" aria-selected="false"><span class="mono">12</span>Tono de voz</button></li>
-              <li><button type="button" role="tab" data-go="5" aria-selected="false"><span class="mono">14</span>Aplicaciones</button></li>
+            <ol class="toc" aria-label="Contenido del librito">
+              <li><button type="button" data-page="0" aria-current="true"><span class="mono">01</span>Portada</button></li>
+              <li><button type="button" data-page="1"><span class="mono">02</span>Quiénes somos y la promesa</button></li>
+              <li><button type="button" data-page="3"><span class="mono">04</span>El logo y su construcción</button></li>
+              <li><button type="button" data-page="5"><span class="mono">06</span>Versiones y qué no hacer</button></li>
+              <li><button type="button" data-page="7"><span class="mono">08</span>Paleta de color</button></li>
+              <li><button type="button" data-page="9"><span class="mono">10</span>Tipografías y jerarquía</button></li>
+              <li><button type="button" data-page="11"><span class="mono">12</span>Tono de voz</button></li>
+              <li><button type="button" data-page="13"><span class="mono">14</span>Aplicaciones y contacto</button></li>
             </ol>
-            <p class="toc-more">También incluye quiénes somos, qué no hacer con el logo y datos de contacto.</p>
 
             <ol class="id-steps">
               <li><span class="mono">Paso 1</span><b>Entrevista de marca</b>Tu negocio, tu cliente y tu competencia.</li>
@@ -476,9 +568,9 @@
             </ol>
 
             <div class="id-buy">
-              <p class="id-price"><small class="mono">Desde</small>S/890</p>
-              <p class="id-meta mono">A5 · 148 × 210 mm · 16 páginas<br />Entrega en 10 a 15 días hábiles</p>
-              <a class="btn btn-light plan-link" href="#contacto" data-plan="Identidad de marca — desde S/890">Quiero mi identidad <span aria-hidden="true">↗</span></a>
+              <p class="id-price"><small class="mono">Aproximado</small>S/890 – 1,490</p>
+              <p class="id-meta mono">Según cuántas aplicaciones necesites<br />Entrega en 10 a 15 días hábiles</p>
+              <a class="btn btn-light plan-link" href="#contacto" data-plan="Identidad de marca — aprox. S/890 a S/1,490">Quiero mi identidad <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>
@@ -695,7 +787,7 @@
           <details open><summary>¿La publicidad está incluida?</summary><p>Sí. Captación incluye S/400 al mes en anuncios y Crecimiento, S/600. Nosotros planificamos dónde invertirlos (Meta Ads o TikTok Ads) y al cierre de cada mes te entregamos el reporte: cuánto se invirtió, cuántas personas te vieron, cuántas te escribieron y cuánto costó cada mensaje. Si quieres invertir más, lo sumas aparte.</p></details>
           <details><summary>¿Qué pasa en la evaluación de marca de las tarjetas?</summary><p>Es una conversación corta sobre tu negocio, tu cliente y los datos que irán impresos. Con eso diseñamos dos propuestas y verificamos cada dato contigo antes de imprimir, para que no haya errores en las 1,000 tarjetas.</p></details>
           <details><summary>¿Y si todavía no tengo redes sociales?</summary><p>No hay problema. El Kit comercial digital las crea desde cero: Instagram, Facebook y WhatsApp Business, con tus primeras publicaciones y tu catálogo listos.</p></details>
-          <details><summary>¿Qué recibo en un proyecto de identidad de marca?</summary><p>Dos propuestas de logo con sus versiones, paleta de colores, tipografías, un librito de marca A5 de 16 páginas (PDF y un ejemplar impreso) y 3 plantillas editables en Canva. Si necesitas más piezas, ampliamos el alcance y lo cotizamos aparte.</p></details>
+          <details><summary>¿Qué recibo en un proyecto de identidad de marca?</summary><p>Dos propuestas de logo con sus versiones, paleta de colores, tipografías, un librito de marca A5 de 16 páginas (PDF y un ejemplar impreso) y 3 plantillas editables en Canva. El precio va de S/890 a S/1,490 aproximadamente, según cuántas aplicaciones necesites (papelería, más plantillas, señalética).</p></details>
           <details><summary>¿Cuánto tiempo debo quedarme en un plan mensual?</summary><p>Recomendamos 3 meses. Las campañas necesitan unas 8 semanas para aprender y bajar el costo por mensaje, y el embudo de Crecimiento completa su recorrido en ese tiempo.</p></details>
           <details><summary>¿Cómo se paga?</summary><p>En los servicios de pago único, 50% al inicio y 50% contra entrega. Los planes mensuales se pagan por adelantado al inicio de cada mes.</p></details>
           <details><summary>¿Garantizan ventas o un número de clientes?</summary><p>No prometemos ventas garantizadas. Trabajamos con objetivos medibles de mensajes y costo por mensaje; el resultado final también depende de tu oferta, tus precios y de cómo atiendes cada consulta.</p></details>
@@ -760,7 +852,7 @@
               <optgroup label="Construir la marca">
                 <option>Tarjetas de presentación — S/179</option>
                 <option>Kit comercial digital — S/449</option>
-                <option>Identidad de marca — desde S/890</option>
+                <option>Identidad de marca — aprox. S/890 a S/1,490</option>
               </optgroup>
               <optgroup label="Ponerla a trabajar">
                 <option>Captación de clientes — S/1,190/mes</option>
@@ -800,6 +892,6 @@
 
   <div role="status" aria-live="polite" id="toast" class="toast"></div>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
