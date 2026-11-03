@@ -10,14 +10,25 @@ Archivo + IBM Plex Mono y el isotipo de mira de precisión.
 
 | # | Sección | Para qué sirve |
 | --- | --- | --- |
-| — | Hero | Promesa, llamado a la acción y el isotipo que se arma como en el logo animado |
+| — | Hero | Promesa, selector «¿Qué necesitas hoy?» y la órbita animada (estrategia, identidad, campañas) |
 | 01 | Enfoque | Estrategia primero; después, la pieza (Pensar · Crear · Medir) |
-| 02 | Servicios | Etapa A: construir la marca · Etapa B: ponerla a trabajar, con precios |
+| 02 | Servicios y precios | Carta de 5 servicios con filtro por objetivo y la mira (Imagen · Captación · Crecimiento) |
 | 03 | Cómo trabajamos | Descubrir · Enfocar · Ejecutar · Mejorar |
-| 04 | Nuestra marca | El sistema de identidad propio como caso: concepto, color, tipografía, aplicaciones |
-| 05 | Para quiénes | Negocios locales, independientes y marcas en crecimiento |
-| 06 | Preguntas frecuentes | Sin letra pequeña |
-| 07 | Contacto | Formulario que abre WhatsApp (o Instagram) con el mensaje listo |
+| 04 | Identidad de marca | El librito de 16 páginas de nuestra propia marca, que se hojea como un libro |
+| 05 | Cada servicio, a detalle | Pestañas con ilustración y tiempos: tarjetas, kit digital, captación y crecimiento |
+| 06 | Para quién | Negocios locales, profesionales independientes y marcas en crecimiento |
+| 07 | Preguntas frecuentes | Sin letra pequeña |
+| 08 | Contacto | Formulario con tipo de negocio que abre WhatsApp (o Instagram) con el mensaje listo |
+
+## Precios publicados
+
+| Servicio | Precio |
+| --- | --- |
+| Tarjetas de presentación (evaluación + diseño + 1,000 impresas + envío en Lima) | S/179 |
+| Kit comercial digital (creación de redes y WhatsApp Business) | S/449 |
+| Identidad de marca | aprox. S/890 – 1,490 |
+| Captación de clientes (incluye S/400 de anuncios) | S/1,190 al mes |
+| Crecimiento comercial (incluye S/600 de anuncios) | S/1,890 al mes |
 
 ## Archivos
 
@@ -51,7 +62,7 @@ Todo lo editable está al inicio de `script.js`, en el bloque `CONFIG`:
 
 ## Caché
 
-`index.html` carga `styles.css`, `script.js` y las imágenes con `?v=1`. Cuando cambies alguno, sube ese número.
+`index.html` carga `styles.css`, `script.js` y las imágenes con `?v=N`. Cuando cambies alguno, sube ese número.
 
 ## Logos
 
