@@ -11,22 +11,22 @@ Archivo + IBM Plex Mono y el isotipo de mira de precisión.
 | # | Sección | Para qué sirve |
 | --- | --- | --- |
 | — | Hero | Promesa, selector «¿Qué necesitas hoy?» y la órbita animada (estrategia, identidad, campañas) |
-| 01 | Enfoque | Estrategia primero; después, la pieza (Pensar · Crear · Medir) |
+| 01 | Enfoque | Estrategia primero; después, el post (Pensar · Crear · Medir) |
 | 02 | Servicios y precios | Carta de 5 servicios con filtro por objetivo y la mira (Imagen · Captación · Crecimiento) |
 | 03 | Cómo trabajamos | Descubrir · Enfocar · Ejecutar · Mejorar |
 | 04 | Identidad de marca | El librito de 16 páginas de nuestra propia marca, que se hojea como un libro |
-| 05 | Cada servicio, a detalle | Pestañas con ilustración y tiempos: tarjetas, kit digital, captación y crecimiento |
+| 05 | Cada servicio, a detalle | Sección oscura con mockups realistas (tarjeta, Instagram, anuncio → WhatsApp, embudo 3D) y tiempos |
 | 06 | Para quién | Negocios locales, profesionales independientes y marcas en crecimiento |
-| 07 | Preguntas frecuentes | Sin letra pequeña |
+| 07 | Preguntas frecuentes | Sin letra pequeña: la lupa sigue el mouse o la inclinación del teléfono |
 | 08 | Contacto | Formulario con tipo de negocio que abre WhatsApp (o Instagram) con el mensaje listo |
 
 ## Precios publicados
 
 | Servicio | Precio |
 | --- | --- |
-| Tarjetas de presentación (evaluación + diseño + 1,000 impresas + envío en Lima) | S/179 |
-| Kit comercial digital (creación de redes y WhatsApp Business) | S/449 |
-| Identidad de marca | aprox. S/890 – 1,490 |
+| Tarjetas de presentación (evaluación + diseño + 1,000 impresas + envío en Lima) | S/169 |
+| Kit comercial digital + tarjetas (redes, WhatsApp Business y 1,000 tarjetas) | S/649 |
+| Identidad de marca + kit comercial + tarjetas | desde S/1,290 |
 | Captación de clientes (incluye S/400 de anuncios) | S/1,190 al mes |
 | Crecimiento comercial (incluye S/600 de anuncios) | S/1,890 al mes |
 

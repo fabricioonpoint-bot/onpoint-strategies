@@ -64,12 +64,32 @@ onScroll();
 /* ---------- Revelado de contenido al bajar ---------- */
 if (!reducedMotion && "IntersectionObserver" in window) {
   const items = document.querySelectorAll(
-    ".section-head, .approach, .svc-filter, .svc-layout, .route, .process-step, .id-copy, .tabs, .audience, .faq-layout > *, .contact-layout > *",
+    ".section-head, .approach, .svc-filter, .svc-layout, .route, .process-step, .id-copy, .tabs, .panel, .audience, .faq details, .faq-head, .contact-layout > *",
   );
-  items.forEach((el, i) => {
+  // Cada sección entra distinto: tarjetas que giran, pasos que llegan de lado, carta que crece
+  const VARIANT = [[".approach", "rv-flip"], [".process-step", "rv-left"], [".svc-layout", "rv-scale"], [".audience", "rv-rise"], [".faq details", "rv-left"], [".panel", "rv-scale"]];
+  items.forEach((el) => {
     el.classList.add("reveal");
-    el.style.setProperty("--d", `${(i % 3) * 80}ms`);
+    const v = VARIANT.find(([sel]) => el.matches(sel));
+    if (v) el.classList.add(v[1]);
+    const sibs = [...el.parentElement.children].filter((c) => c.classList.contains("reveal"));
+    el.style.setProperty("--d", `${Math.min(sibs.indexOf(el), 6) * 90}ms`);
   });
+
+  // Secciones oscuras: se abren como un iris mientras llegan (ligado al scroll)
+  const irises = [...document.querySelectorAll("[data-tr='iris']")];
+  const iris = () => {
+    const vh = window.innerHeight;
+    irises.forEach((s) => {
+      const top = s.getBoundingClientRect().top;
+      const p = Math.max(0, Math.min(1, (vh - top) / (vh * 0.75)));
+      s.style.setProperty("--p", p.toFixed(3));
+      s.classList.toggle("tr-done", p >= 1);
+    });
+  };
+  window.addEventListener("scroll", () => requestAnimationFrame(iris), { passive: true });
+  window.addEventListener("resize", iris, { passive: true });
+  iris();
   const observer = new IntersectionObserver(
     (entries) => entries.forEach((e) => {
       if (e.isIntersecting) {
@@ -283,6 +303,7 @@ document.querySelectorAll(".goal").forEach((link) =>
     { r: 275, k: 0.46, roll: 0.24, speed: -0.28, start: 0.35, sats: 6 },
     { r: 370, k: 0.34, roll: -0.08, speed: 0.18, start: 1.3, sats: 8 },
   ];
+  const narrow = window.matchMedia("(max-width: 960px)");
   const q = (sel) => [...svg.querySelectorAll(sel)];
   const backHalves = q(".o-halves-back .o-half");
   const frontHalves = q(".o-halves-front .o-half");
@@ -331,9 +352,11 @@ document.querySelectorAll(".goal").forEach((link) =>
   let compact = false;
   let safe = { x0: 60, x1: 940 };
   const measure = () => {
+    // En teléfono la órbita llena el ancho (los anillos de afuera salen del borde); en computadora entra completa
+    svg.setAttribute("preserveAspectRatio", narrow.matches ? "xMidYMid slice" : "xMidYMid meet");
     const rect = svg.getBoundingClientRect();
     if (!rect.width) return;
-    const scale = Math.min(rect.width / 860, rect.height / 580);
+    const scale = narrow.matches ? Math.max(rect.width / 860, rect.height / 580) : Math.min(rect.width / 860, rect.height / 580);
     const visW = rect.width / scale;
     const absolute = getComputedStyle(stage).position === "absolute";
     const left = 500 - visW / 2;
@@ -379,7 +402,7 @@ document.querySelectorAll(".goal").forEach((link) =>
 
   const planeOf = (i, t, grow) => {
     const ring = RINGS[i];
-    const k = Math.max(0.12, ring.k + 0.06 * Math.sin(t * 0.38 + i * 1.7) + tilt) * (1 - grow * 0.35);
+    const k = Math.max(0.12, ring.k * (narrow.matches ? 1.4 : 1) + 0.06 * Math.sin(t * 0.38 + i * 1.7) + tilt) * (1 - grow * 0.35);
     const rl = ring.roll + 0.12 * Math.sin(t * 0.24 + i * 2.1) + roll;
     return { r: ring.r * (1 + grow * 0.5), k, rl, cos: Math.cos(rl), sin: Math.sin(rl), deg: (rl * 180) / Math.PI };
   };
@@ -388,6 +411,10 @@ document.querySelectorAll(".goal").forEach((link) =>
     return [CX + x * pl.cos - z * pl.sin, CY + x * pl.sin + z * pl.cos];
   };
   const f1 = (n) => n.toFixed(1);
+  // Extremos de los cuatro tics plomos del isotipo (en coordenadas de la órbita)
+  const ISO_X = 415, ISO_Y = 315, ISO_S = 170 / 120;
+  const TICS = { t: [ISO_X + 60 * ISO_S, ISO_Y + 4 * ISO_S], b: [ISO_X + 60 * ISO_S, ISO_Y + 116 * ISO_S], l: [ISO_X + 4 * ISO_S, ISO_Y + 60 * ISO_S], r: [ISO_X + 116 * ISO_S, ISO_Y + 60 * ISO_S] };
+  const ticEls = { t: svg.querySelector(".iso-tic-t"), b: svg.querySelector(".iso-tic-b"), l: svg.querySelector(".iso-tic-l"), r: svg.querySelector(".iso-tic-r") };
 
   function frame(t, grow) {
     tilt += (tiltTarget - tilt) * 0.06;
@@ -495,6 +522,7 @@ document.querySelectorAll(".goal").forEach((link) =>
       n.muted = bestScore >= 60;
       if (!n.muted) placed.push(box(n, n.right, n.below));
     });
+    const linked = new Set();
     info.forEach((n) => {
       n.node.setAttribute("transform", `translate(${f1(n.px)} ${f1(n.py)}) scale(${n.scale.toFixed(3)})`);
       n.node.style.opacity = (0.5 + 0.5 * ((n.depth + 1) / 2)).toFixed(3);
@@ -515,8 +543,14 @@ document.querySelectorAll(".goal").forEach((link) =>
       caption.style.opacity = hide ? "0" : "1";
       const layer = n.depth < 0 ? back : front;
       if (n.node.parentNode !== layer) layer.appendChild(n.node);
-      links[n.i].setAttribute("d", `M${f1(n.px)} ${f1(n.py)}L${CX} ${CY}`);
+      // La línea sale del tic plomo del logo más cercano y llega al punto
+      const ang = Math.atan2(n.py - CY, n.px - CX);
+      const side = Math.abs(ang) < Math.PI / 4 ? "r" : Math.abs(ang) > (3 * Math.PI) / 4 ? "l" : ang > 0 ? "b" : "t";
+      const [tx, ty] = TICS[side];
+      links[n.i].setAttribute("d", `M${tx} ${ty}L${f1(n.px)} ${f1(n.py)}`);
+      linked.add(side);
     });
+    Object.entries(ticEls).forEach(([k, el]) => el && el.classList.toggle("is-linked", linked.has(k)));
   }
 
   // Transición al bajar: la órbita se abre, baja un poco y se desvanece
@@ -712,8 +746,23 @@ function openTab(name) {
     const on = tab.dataset.tab === name;
     tab.setAttribute("aria-selected", String(on));
     tab.tabIndex = on ? 0 : -1;
-    document.getElementById(tab.getAttribute("aria-controls")).hidden = !on;
+    const panel = document.getElementById(tab.getAttribute("aria-controls"));
+    panel.hidden = !on;
+    if (on) panel.classList.add("is-visible");
   });
+  if (name === "captacion") replayChats();
+}
+
+// Captación: las consultas llegan una a una al WhatsApp (se repite mientras se ve)
+const waList = document.querySelector(".wa-list");
+function replayChats() {
+  if (!waList || reducedMotion) return;
+  waList.classList.remove("is-live");
+  void waList.offsetWidth;
+  waList.classList.add("is-live");
+}
+if (waList && !reducedMotion) {
+  setInterval(() => { if (!document.getElementById("panel-captacion").hidden) replayChats(); }, 9000);
 }
 detailTabs.forEach((tab, i) => {
   tab.addEventListener("click", () => openTab(tab.dataset.tab));
@@ -737,6 +786,209 @@ openTab("tarjetas");
   setInterval(() => {
     if (!document.getElementById("panel-tarjetas").hidden) card.classList.toggle("is-flipped");
   }, 3000);
+})();
+
+// Crecimiento: embudo en 3D con clientes que bajan en espiral hasta tu WhatsApp
+(function funnel3d() {
+  const svg = document.getElementById("funnel3d");
+  if (!svg) return;
+  const NS = "http://www.w3.org/2000/svg";
+  const panel = document.getElementById("panel-crecimiento");
+  const CX = 160;
+  const L = [{ y: 62, r: 140 }, { y: 160, r: 96 }, { y: 250, r: 54 }, { y: 304, r: 14 }];
+  const g = (c) => svg.querySelector("." + c);
+  const mk = (tag, cls, parent, attrs = {}) => {
+    const e = document.createElementNS(NS, tag);
+    if (cls) e.setAttribute("class", cls);
+    Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+    parent.appendChild(e);
+    return e;
+  };
+  const backs = L.slice(0, 3).map(() => mk("path", "f-ring", g("f-back")));
+  const fronts = L.slice(0, 3).map(() => mk("path", "f-ring", g("f-front")));
+  const bands = L.slice(0, 3).map((_, i) => mk("path", "f-band f-band-" + i, g("f-sides")));
+  L.slice(0, 3).forEach((l, i) => mk("path", "f-lead", g("f-labels"), { d: `M${CX + l.r + 8} ${l.y}H${314}` }));
+  const wa = g("f-wa");
+  const stepEls = [...panel.querySelectorAll(".wa-flow li")];
+  const N = 24;
+  const dots = Array.from({ length: N }, (_, i) => ({ p: i / N, a: (i * 2.399) % (Math.PI * 2), el: mk("circle", "f-dot", g("f-parts"), { r: 2.4 }) }));
+  const f1 = (v) => v.toFixed(1);
+  const radiusAt = (y) => {
+    for (let i = 0; i < L.length - 1; i++) {
+      if (y <= L[i + 1].y) return L[i].r + (L[i + 1].r - L[i].r) * ((y - L[i].y) / (L[i + 1].y - L[i].y));
+    }
+    return L[L.length - 1].r;
+  };
+  let tilt = 0, tiltT = 0, last = 0, running = false, visible = false, arrivals = 0;
+  function frame(now) {
+    const dt = Math.min(0.05, (now - (last || now)) / 1000);
+    last = now;
+    tilt += (tiltT - tilt) * 0.06;
+    const k = 0.25 + tilt * 0.1 + 0.015 * Math.sin(now / 1400);
+    L.slice(0, 3).forEach((l, i) => {
+      const ry = l.r * k;
+      backs[i].setAttribute("d", `M${CX - l.r} ${l.y}A${l.r} ${f1(ry)} 0 0 1 ${CX + l.r} ${l.y}`);
+      fronts[i].setAttribute("d", `M${CX + l.r} ${l.y}A${l.r} ${f1(ry)} 0 0 1 ${CX - l.r} ${l.y}`);
+      const n = L[i + 1], nry = n.r * k;
+      bands[i].setAttribute("d", `M${CX - l.r} ${l.y}L${CX - n.r} ${n.y}A${n.r} ${f1(nry)} 0 0 0 ${CX + n.r} ${n.y}L${CX + l.r} ${l.y}A${l.r} ${f1(ry)} 0 0 1 ${CX - l.r} ${l.y}Z`);
+    });
+    dots.forEach((d) => {
+      d.p += dt * 0.07;
+      if (d.p >= 1) {
+        d.p -= 1;
+        wa.classList.remove("ping"); void wa.getBBox(); wa.classList.add("ping");
+        arrivals++;
+        stepEls.forEach((s, i) => s.classList.toggle("on", i === arrivals % stepEls.length));
+      }
+      const y = L[0].y + (L[3].y - L[0].y) * d.p;
+      const r = radiusAt(y);
+      const th = d.a + d.p * Math.PI * 6;
+      const front = Math.sin(th) > 0;
+      const parent = front ? g("f-parts") : g("f-pb");
+      if (d.el.parentNode !== parent) { parent.appendChild(d.el); d.el.setAttribute("r", front ? 2.8 : 1.8); }
+      d.el.setAttribute("cx", f1(CX + r * Math.cos(th)));
+      d.el.setAttribute("cy", f1(y + r * k * Math.sin(th)));
+      d.el.setAttribute("opacity", f1(Math.min(1, d.p * 8, (1 - d.p) * 10)));
+    });
+    if (running) requestAnimationFrame(frame);
+  }
+  const sync = () => {
+    const should = visible && !panel.hidden && !reducedMotion;
+    if (should && !running) { running = true; last = 0; requestAnimationFrame(frame); }
+    if (!should) running = false;
+  };
+  frame(0);
+  if (reducedMotion) return;
+  new IntersectionObserver((es) => { visible = es[0].isIntersecting; sync(); }).observe(svg);
+  new MutationObserver(sync).observe(panel, { attributes: true, attributeFilter: ["hidden"] });
+  svg.closest(".panel-art").addEventListener("pointermove", (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    tiltT = (e.clientY - r.top) / r.height - 0.5;
+  });
+})();
+
+// Preguntas: la lupa sigue el mouse (o la inclinación del teléfono) y lee la letra pequeña
+(function lens() {
+  const svg = document.getElementById("lens");
+  if (!svg) return;
+  const clip = svg.querySelector(".lens-clip");
+  const move = svg.querySelector(".lens-move");
+  const hint = document.querySelector(".lens-hint");
+  const section = document.getElementById("preguntas");
+  const BASE = { x: 150, y: 104 };
+  const BOX = { x0: 70, x1: 205, y0: 52, y1: 150 };
+  let x = BASE.x, y = BASE.y, tx = x, ty = y, lastInput = -1e9, running = false, visible = false;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const place = () => {
+    clip.setAttribute("cx", x.toFixed(1));
+    clip.setAttribute("cy", y.toFixed(1));
+    move.setAttribute("transform", `translate(${(x - BASE.x).toFixed(1)} ${(y - BASE.y).toFixed(1)})`);
+  };
+  function frame(now) {
+    if (now - lastInput > 2500) {
+      // Sin interacción: recorre las líneas sola, despacio
+      tx = 137 + 62 * Math.sin(now / 2300);
+      ty = 101 + 44 * Math.sin(now / 3100 + 1);
+    }
+    x += (tx - x) * 0.08;
+    y += (ty - y) * 0.08;
+    place();
+    if (running) requestAnimationFrame(frame);
+  }
+  const sync = () => {
+    if (visible && !running && !reducedMotion) { running = true; requestAnimationFrame(frame); }
+    if (!visible) running = false;
+  };
+  place();
+  if (reducedMotion) return;
+  new IntersectionObserver((es) => { visible = es[0].isIntersecting; sync(); }).observe(svg);
+  section.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch") return;
+    const r = svg.getBoundingClientRect();
+    const sx = 300 / r.width;
+    tx = clamp((e.clientX - r.left) * sx, BOX.x0, BOX.x1);
+    ty = clamp((e.clientY - r.top) * sx, BOX.y0, BOX.y1);
+    lastInput = performance.now();
+  });
+  // Teléfono: la lupa se mueve al inclinarlo
+  const onTilt = (e) => {
+    if (e.gamma == null) return;
+    tx = clamp(BASE.x + e.gamma * 3, BOX.x0, BOX.x1);
+    ty = clamp(BASE.y + (e.beta - 45) * 2.2, BOX.y0, BOX.y1);
+    lastInput = performance.now();
+  };
+  const isTouch = window.matchMedia("(pointer: coarse)").matches;
+  if (!isTouch || !("DeviceOrientationEvent" in window)) return;
+  if (hint) hint.textContent = "Inclina tu teléfono";
+  const needsPermission = typeof DeviceOrientationEvent.requestPermission === "function";
+  if (!needsPermission) { window.addEventListener("deviceorientation", onTilt); return; }
+  // iPhone: pide permiso al primer toque sobre la lupa
+  if (hint) hint.textContent = "Toca la lupa e inclina tu teléfono";
+  svg.addEventListener("click", () => {
+    DeviceOrientationEvent.requestPermission().then((s) => {
+      if (s === "granted") window.addEventListener("deviceorientation", onTilt);
+    }).catch(() => {});
+  }, { once: true });
+})();
+
+/* ---------- Versión de teléfono: menos texto, más imagen ---------- */
+(function mobileCondense() {
+  const mq = window.matchMedia("(max-width: 640px)");
+  const moreBtn = (el, closed, open) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "more-btn mono";
+    btn.textContent = closed;
+    btn.setAttribute("aria-expanded", "false");
+    btn.addEventListener("click", () => {
+      const isOpen = el.classList.toggle("is-open");
+      btn.textContent = isOpen ? open : closed;
+      btn.setAttribute("aria-expanded", String(isOpen));
+    });
+    el.after(btn);
+    return btn;
+  };
+  // Párrafos largos: dos líneas y "Ver más"
+  const clampEls = [...document.querySelectorAll(".hero-lead, .section-intro, .panel-lead, .contact-copy > p")];
+  const btns = clampEls.map((el) => { el.classList.add("clampable"); return moreBtn(el, "Ver más", "Ver menos"); });
+  const check = () => clampEls.forEach((el, i) => {
+    if (el.classList.contains("is-open")) return;
+    btns[i].hidden = !(mq.matches && el.scrollHeight > el.clientHeight + 2);
+  });
+  // Bloques que se abren al tocarlos (en teléfono): solo el título a la vista
+  document.querySelectorAll(".approach, .process-step, .timeline li").forEach((el) => {
+    el.classList.add("acc");
+    el.addEventListener("click", (e) => {
+      if (!mq.matches || e.target.closest("a, button")) return;
+      el.classList.toggle("is-open");
+    });
+  });
+  const steps = document.querySelector(".id-steps");
+  if (steps) { steps.classList.add("acc-list"); moreBtn(steps, "Ver los 4 pasos", "Ocultar pasos"); }
+  check();
+  mq.addEventListener("change", check);
+  window.addEventListener("resize", check, { passive: true });
+  document.fonts?.ready.then(check);
+  // Al abrir una pestaña de detalle, revisar si su texto necesita "Ver más"
+  detailTabs.forEach((t) => t.addEventListener("click", () => requestAnimationFrame(check)));
+})();
+
+// En pantallas sin espacio lateral, la mira (arriba, fija) sigue al servicio que pasa por el centro
+(function miraMobile() {
+  if (!target) return;
+  const mqMira = window.matchMedia("(max-width: 980px)");
+  const hit = () => {
+    if (reducedMotion) return;
+    target.classList.remove("is-hit");
+    void target.getBBox();
+    target.classList.add("is-hit");
+  };
+  services.forEach((svc) => svc.querySelector("details").addEventListener("toggle", (e) => { if (e.target.open) hit(); }));
+  const io = new IntersectionObserver((entries) => {
+    if (!mqMira.matches || openService()) return;
+    entries.forEach((e) => { if (e.isIntersecting) { showOnTarget(e.target); hit(); } });
+  }, { rootMargin: "-45% 0px -45% 0px" });
+  services.forEach((svc) => io.observe(svc));
 })();
 
 document.getElementById("year").textContent = String(new Date().getFullYear());
