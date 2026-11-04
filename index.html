@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 
   <script type="application/ld+json">
   {
@@ -578,16 +578,27 @@
 
     <!-- ================= 05 SERVICIOS A DETALLE (dark) ================= -->
     <section class="section section-dark detail" id="detalle" aria-labelledby="detalle-title">
-      <!-- Íconos del negocio de ejemplo (Café Molle, ficticio) -->
+      <!-- Íconos de los ejemplos: "Tu Marca" y negocios de distintos rubros -->
       <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-        <symbol id="i-cup" viewBox="0 0 64 64"><path d="M14 26h30v10c0 9-7 16-15 16s-15-7-15-16z" fill="currentColor" /><path d="M44 30h4a6 6 0 0 1 0 12h-5" fill="none" stroke="currentColor" stroke-width="4" /><ellipse cx="29" cy="55" rx="20" ry="3.5" fill="currentColor" opacity=".55" /><path d="M23 8c-3 4 3 6 0 11M31 6c-3 4 3 7 0 13M39 8c-3 4 3 6 0 11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".7" /></symbol>
-        <symbol id="i-cake" viewBox="0 0 64 64"><path d="M10 34 54 20v28H10z" fill="currentColor" /><path d="M10 34 54 20v6L10 40z" fill="#fff" opacity=".35" /><circle cx="40" cy="16" r="5" fill="currentColor" /></symbol>
-        <symbol id="i-bean" viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="16" ry="23" transform="rotate(28 32 32)" fill="currentColor" /><path d="M26 12c10 12 2 28 12 40" fill="none" stroke="#fff" stroke-width="3" opacity=".45" /></symbol>
+        <defs>
+          <linearGradient id="tm-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D" /><stop offset="0.55" stop-color="#FF4D2E" /><stop offset="1" stop-color="#D6246E" /></linearGradient>
+        </defs>
+        <symbol id="tm-logo" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="url(#tm-grad)" /><circle cx="32" cy="32" r="25" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.2" /><text x="31" y="41.5" text-anchor="middle" fill="#fff" font-family="Archivo, Arial Narrow, sans-serif" font-weight="800" font-size="26" font-stretch="75%" letter-spacing="-1">TM</text><circle cx="48" cy="20" r="3.2" fill="#fff" /></symbol>
+        <symbol id="i-cup" viewBox="0 0 64 64"><path d="M14 26h30v10c0 9-7 16-15 16s-15-7-15-16z" fill="currentColor" /><path d="M44 30h4a6 6 0 0 1 0 12h-5" fill="none" stroke="currentColor" stroke-width="4" /><path d="M23 8c-3 4 3 6 0 11M31 6c-3 4 3 7 0 13M39 8c-3 4 3 6 0 11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".7" /></symbol>
+        <symbol id="i-cake" viewBox="0 0 64 64"><path d="M10 34 54 20v28H10z" fill="currentColor" /><path d="M10 34 54 20v6L10 40z" fill="#fff" opacity=".35" /><circle cx="40" cy="15" r="5" fill="currentColor" /></symbol>
+        <symbol id="i-cut" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"><circle cx="18" cy="48" r="8" /><circle cx="46" cy="48" r="8" /><path d="M23 41 46 7M41 41 18 7" /></g></symbol>
+        <symbol id="i-shirt" viewBox="0 0 64 64"><path d="M22 8 10 15 3 29l10 5 5-7v30h28V27l5 7 10-5-7-14-12-7c-2 5-6 7-10 7s-8-2-10-7z" fill="currentColor" /></symbol>
+        <symbol id="i-bowl" viewBox="0 0 64 64"><path d="M5 30h54c0 14-12 24-27 24S5 44 5 30z" fill="currentColor" /><path d="M22 23c-3-5 3-7 0-13M34 23c-3-5 3-7 0-13M50 6 30 26" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" /></symbol>
+        <symbol id="i-gym" viewBox="0 0 64 64"><g fill="currentColor"><rect x="3" y="23" width="7" height="18" rx="2" /><rect x="11" y="15" width="8" height="34" rx="2" /><rect x="45" y="15" width="8" height="34" rx="2" /><rect x="54" y="23" width="7" height="18" rx="2" /><rect x="19" y="29" width="26" height="6" /></g></symbol>
+        <symbol id="i-nail" viewBox="0 0 64 64"><g fill="currentColor"><rect x="25" y="4" width="14" height="22" rx="3" /><rect x="15" y="27" width="34" height="32" rx="8" /></g><rect x="20" y="33" width="6" height="18" rx="3" fill="#fff" opacity=".4" /></symbol>
+        <symbol id="i-house" viewBox="0 0 64 64"><path d="M32 5 3 30h8v27h16V41h10v16h16V30h8z" fill="currentColor" /></symbol>
+        <symbol id="i-wrench" viewBox="0 0 64 64"><path d="M45 4a15 15 0 0 0-14 20L6 49a6.5 6.5 0 0 0 9 9l25-25a15 15 0 0 0 20-14l-10 9-8-2-2-8 9-10a15 15 0 0 0-4-4z" fill="currentColor" /></symbol>
+        <symbol id="i-user" viewBox="0 0 64 64"><circle cx="32" cy="25" r="12" fill="currentColor" /><path d="M8 62c2-14 12-21 24-21s22 7 24 21z" fill="currentColor" /></symbol>
       </svg>
       <div class="container">
         <div class="section-head">
           <div><p class="kicker mono">05 / Cada servicio, a detalle</p><h2 id="detalle-title">Así funciona<br />cada servicio.</h2></div>
-          <p class="section-intro">Qué pasa en cada etapa, cuánto demora y qué recibes al final. Los ejemplos usan un negocio ficticio: Café Molle, en Barranco.</p>
+          <p class="section-intro">Qué pasa en cada etapa, cuánto demora y cómo se ve el resultado final con tu marca.</p>
         </div>
 
         <div class="tabs" role="tablist" aria-label="Servicios">
@@ -597,7 +608,7 @@
           <button type="button" role="tab" class="tab" id="tab-crecimiento" aria-controls="panel-crecimiento" aria-selected="false" data-tab="crecimiento">Crecimiento<small>S/1,890 / mes</small></button>
         </div>
 
-        <!-- Tarjetas: la nuestra -->
+        <!-- Tarjetas: el producto final, acabado mate -->
         <div class="panel" role="tabpanel" id="panel-tarjetas" aria-labelledby="tab-tarjetas">
           <div class="panel-art art-cards" aria-hidden="true">
             <div class="biz-scene">
@@ -605,27 +616,35 @@
               <div class="biz-card">
                 <div class="biz-face biz-front">
                   <span class="biz-tics"></span>
-                  <img src="assets/brand/ops-logo-horizontal-blanco.svg" alt="" width="190" height="54" />
-                  <span class="biz-tag mono">Dar en el punto</span>
+                  <span class="biz-logo"><svg><use href="#tm-logo" /></svg><span class="biz-uv"></span></span>
+                  <b class="biz-brand">TU MARCA</b>
+                  <span class="biz-tag mono">Tu frase o eslogan</span>
                 </div>
                 <div class="biz-face biz-back">
-                  <div>
-                    <b class="biz-name">Fabricio Tueros</b>
-                    <span class="biz-role mono">Asesor de marketing</span>
+                  <div class="biz-top">
+                    <div>
+                      <b class="biz-name">Tu nombre</b>
+                      <span class="biz-role mono">Tu oficio o rubro</span>
+                    </div>
+                    <svg class="biz-mini"><use href="#tm-logo" /></svg>
                   </div>
                   <div class="biz-row">
-                    <span class="biz-data">@onpoint.mkt.pe<br />Lima, Perú</span>
-                    <span class="biz-qr"><i></i></span>
+                    <ul class="biz-data">
+                      <li><i class="bi-ig"></i>@tumarca</li>
+                      <li><i class="bi-wa"></i>+51 9•• ••• •••</li>
+                      <li><i class="bi-pin"></i>Lima, Perú</li>
+                    </ul>
+                    <span class="biz-qr"><svg viewBox="-2 -2 37 37" shape-rendering="crispEdges"><rect x="-2" y="-2" width="37" height="37" fill="#fff" /><path d="M0 0h7v1h-7zM11 0h2v1h-2zM14 0h2v1h-2zM18 0h2v1h-2zM22 0h2v1h-2zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM11 1h1v1h-1zM15 1h1v1h-1zM18 1h1v1h-1zM20 1h2v1h-2zM23 1h2v1h-2zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h2v1h-2zM12 2h1v1h-1zM14 2h2v1h-2zM17 2h1v1h-1zM22 2h3v1h-3zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM10 3h4v1h-4zM15 3h1v1h-1zM18 3h1v1h-1zM24 3h1v1h-1zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM10 4h2v1h-2zM16 4h3v1h-3zM23 4h1v1h-1zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM13 5h2v1h-2zM17 5h3v1h-3zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM9 7h4v1h-4zM14 7h1v1h-1zM17 7h1v1h-1zM20 7h2v1h-2zM24 7h1v1h-1zM0 8h1v1h-1zM3 8h1v1h-1zM5 8h2v1h-2zM8 8h1v1h-1zM10 8h1v1h-1zM13 8h4v1h-4zM21 8h1v1h-1zM24 8h2v1h-2zM27 8h1v1h-1zM0 9h2v1h-2zM3 9h3v1h-3zM7 9h1v1h-1zM9 9h4v1h-4zM14 9h1v1h-1zM16 9h1v1h-1zM18 9h1v1h-1zM20 9h1v1h-1zM24 9h4v1h-4zM31 9h2v1h-2zM2 10h2v1h-2zM6 10h1v1h-1zM10 10h2v1h-2zM18 10h2v1h-2zM22 10h1v1h-1zM24 10h1v1h-1zM27 10h2v1h-2zM30 10h1v1h-1zM32 10h1v1h-1zM0 11h3v1h-3zM4 11h2v1h-2zM7 11h3v1h-3zM14 11h1v1h-1zM16 11h1v1h-1zM18 11h1v1h-1zM21 11h3v1h-3zM28 11h2v1h-2zM32 11h1v1h-1zM0 12h1v1h-1zM3 12h1v1h-1zM5 12h2v1h-2zM8 12h1v1h-1zM10 12h1v1h-1zM15 12h1v1h-1zM17 12h1v1h-1zM19 12h3v1h-3zM24 12h3v1h-3zM29 12h1v1h-1zM31 12h2v1h-2zM3 13h1v1h-1zM5 13h1v1h-1zM8 13h3v1h-3zM12 13h1v1h-1zM15 13h3v1h-3zM19 13h2v1h-2zM24 13h1v1h-1zM26 13h1v1h-1zM28 13h2v1h-2zM31 13h2v1h-2zM0 14h1v1h-1zM3 14h2v1h-2zM6 14h1v1h-1zM8 14h1v1h-1zM11 14h2v1h-2zM14 14h1v1h-1zM17 14h1v1h-1zM22 14h2v1h-2zM25 14h3v1h-3zM29 14h1v1h-1zM31 14h1v1h-1zM0 15h1v1h-1zM2 15h3v1h-3zM7 15h2v1h-2zM12 15h2v1h-2zM15 15h1v1h-1zM17 15h1v1h-1zM19 15h5v1h-5zM26 15h1v1h-1zM28 15h2v1h-2zM31 15h1v1h-1zM0 16h1v1h-1zM4 16h5v1h-5zM10 16h2v1h-2zM13 16h2v1h-2zM17 16h7v1h-7zM26 16h1v1h-1zM28 16h1v1h-1zM31 16h1v1h-1zM2 17h3v1h-3zM9 17h3v1h-3zM13 17h1v1h-1zM21 17h1v1h-1zM23 17h3v1h-3zM27 17h1v1h-1zM29 17h1v1h-1zM0 18h2v1h-2zM4 18h1v1h-1zM6 18h1v1h-1zM8 18h1v1h-1zM11 18h2v1h-2zM14 18h1v1h-1zM16 18h1v1h-1zM20 18h3v1h-3zM24 18h2v1h-2zM30 18h3v1h-3zM0 19h1v1h-1zM3 19h1v1h-1zM7 19h2v1h-2zM10 19h1v1h-1zM15 19h1v1h-1zM17 19h2v1h-2zM21 19h1v1h-1zM26 19h2v1h-2zM6 20h1v1h-1zM10 20h1v1h-1zM12 20h2v1h-2zM16 20h1v1h-1zM20 20h2v1h-2zM23 20h3v1h-3zM32 20h1v1h-1zM1 21h5v1h-5zM7 21h3v1h-3zM11 21h2v1h-2zM15 21h2v1h-2zM18 21h1v1h-1zM20 21h1v1h-1zM22 21h1v1h-1zM24 21h1v1h-1zM26 21h2v1h-2zM30 21h3v1h-3zM0 22h2v1h-2zM3 22h1v1h-1zM6 22h1v1h-1zM8 22h2v1h-2zM14 22h2v1h-2zM19 22h1v1h-1zM21 22h2v1h-2zM26 22h3v1h-3zM32 22h1v1h-1zM1 23h1v1h-1zM5 23h1v1h-1zM8 23h3v1h-3zM16 23h1v1h-1zM18 23h8v1h-8zM28 23h2v1h-2zM32 23h1v1h-1zM0 24h1v1h-1zM3 24h1v1h-1zM6 24h1v1h-1zM9 24h1v1h-1zM11 24h1v1h-1zM15 24h1v1h-1zM17 24h1v1h-1zM21 24h1v1h-1zM23 24h6v1h-6zM8 25h4v1h-4zM13 25h1v1h-1zM17 25h1v1h-1zM19 25h6v1h-6zM28 25h2v1h-2zM32 25h1v1h-1zM0 26h7v1h-7zM10 26h3v1h-3zM14 26h1v1h-1zM18 26h1v1h-1zM24 26h1v1h-1zM26 26h1v1h-1zM28 26h4v1h-4zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h2v1h-2zM11 27h1v1h-1zM13 27h2v1h-2zM16 27h3v1h-3zM20 27h2v1h-2zM24 27h1v1h-1zM28 27h1v1h-1zM31 27h1v1h-1zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM9 28h3v1h-3zM15 28h1v1h-1zM17 28h2v1h-2zM20 28h3v1h-3zM24 28h6v1h-6zM32 28h1v1h-1zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM8 29h3v1h-3zM12 29h1v1h-1zM14 29h2v1h-2zM22 29h2v1h-2zM26 29h1v1h-1zM28 29h1v1h-1zM30 29h1v1h-1zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM9 30h1v1h-1zM11 30h1v1h-1zM13 30h1v1h-1zM17 30h2v1h-2zM20 30h2v1h-2zM24 30h1v1h-1zM28 30h3v1h-3zM32 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM10 31h1v1h-1zM13 31h1v1h-1zM17 31h1v1h-1zM19 31h1v1h-1zM21 31h1v1h-1zM23 31h2v1h-2zM0 32h7v1h-7zM8 32h1v1h-1zM15 32h2v1h-2zM21 32h1v1h-1zM24 32h1v1h-1zM28 32h2v1h-2zM31 32h1v1h-1z" /></svg><small class="mono">Escanéame</small></span>
                   </div>
-                  <img class="biz-mini" src="assets/brand/ops-isotipo.svg" alt="" width="18" height="18" />
+                  <span class="biz-stripe"></span>
                 </div>
               </div>
             </div>
-            <p class="art-badge mono"><b>× 1,000</b> couché 350 g · plastificado mate</p>
+            <p class="art-badge mono"><b>× 1,000</b> couché 350 g · mate con brillo UV en el logo</p>
           </div>
           <div class="panel-copy">
             <h3>Tarjetas de presentación</h3>
-            <p class="panel-lead">No vendemos solo un diseño: llegas con una idea y te vas con 1,000 tarjetas en la mano. Así quedó la nuestra.</p>
+            <p class="panel-lead">No vendemos solo un diseño: llegas con una idea y te vas con 1,000 tarjetas en la mano, con acabado mate y tu QR listo para escanear.</p>
             <ol class="timeline">
               <li><span class="mono">Día 1</span><b>Evaluación de marca</b><span class="tl-text">Una entrevista corta: qué vendes, a quién y qué datos van impresos.</span></li>
               <li><span class="mono">Días 1–2</span><b>Diseño</b><span class="tl-text">Dos propuestas a dos caras, con QR a tu WhatsApp o Instagram.</span></li>
@@ -636,55 +655,56 @@
           </div>
         </div>
 
-        <!-- Kit comercial digital: Instagram de un negocio de ejemplo -->
+        <!-- Kit comercial digital: así se ve tu Instagram -->
         <div class="panel" role="tabpanel" id="panel-kit" aria-labelledby="tab-kit" hidden>
           <div class="panel-art art-kit" aria-hidden="true">
             <div class="phone-x phone-tilt-l">
               <div class="px-screen">
                 <div class="px-status"><b>9:41</b><span class="px-island"></span><span class="px-bat"></span></div>
-                <div class="ig-bar"><b>cafemolle.pe</b><span class="ig-dots"></span></div>
+                <div class="ig-bar"><b>tumarca.pe</b><span class="ig-dots"></span></div>
                 <div class="ig-head">
-                  <span class="ig-av">CM</span>
-                  <div class="ig-nums"><p><b>128</b>publicaciones</p><p><b>2,413</b>seguidores</p><p><b>186</b>seguidos</p></div>
+                  <span class="ig-av"><svg><use href="#tm-logo" /></svg></span>
+                  <div class="ig-nums"><p><b>96</b>publicaciones</p><p><b>3,208</b>seguidores</p><p><b>214</b>seguidos</p></div>
                 </div>
-                <p class="ig-nm">Café Molle</p>
-                <p class="ig-cat">Cafetería</p>
-                <p class="ig-bio">Café de especialidad y postres caseros ☕<br />Barranco, Lima · 8 a. m. – 9 p. m.</p>
-                <p class="ig-link">wa.link/cafemolle</p>
-                <div class="ig-btns"><span class="ig-follow">Seguir</span><span>Mensaje</span><span>WhatsApp</span></div>
+                <p class="ig-nm">Tu Marca</p>
+                <p class="ig-cat">Tu rubro</p>
+                <p class="ig-bio">Aquí va lo que hace única a tu marca ✨<br />Qué vendes, para quién y dónde · Lima</p>
+                <p class="ig-link"><i class="ig-chain"></i>wa.me/tuwhatsapp</p>
+                <div class="ig-btns"><span class="ig-follow">Seguir</span><span>Mensaje</span><span class="ig-wa">WhatsApp</span></div>
                 <div class="ig-hls">
-                  <span><i><svg><use href="#i-cup" /></svg></i>Carta</span>
-                  <span><i><svg><use href="#i-cake" /></svg></i>Postres</span>
-                  <span><i class="t">2×1</i>Promos</span>
-                  <span><i class="t">📍</i>Ubícanos</span>
+                  <span><i><svg><use href="#i-shirt" /></svg></i>Catálogo</span>
+                  <span><i class="t">%</i>Promos</span>
+                  <span><i class="t">★</i>Clientes</span>
+                  <span><i><svg><use href="#i-house" /></svg></i>Ubícanos</span>
                 </div>
                 <div class="ig-tabs"><i class="on"></i><i></i><i></i></div>
                 <div class="ig-feed">
-                  <div class="ig-p p-green"><svg><use href="#i-cup" /></svg><b>2×1</b><small>en capuchinos</small></div>
-                  <div class="ig-p p-cream"><b class="big">Nuevo</b><svg class="sm"><use href="#i-cake" /></svg><small>cheesecake de maracuyá</small></div>
-                  <div class="ig-p p-terra"><svg><use href="#i-bean" /></svg><small>café de Villa Rica</small></div>
-                  <div class="ig-p p-cream"><small class="q">«El mejor flat white de Barranco»</small><i class="stars">★★★★★</i></div>
-                  <div class="ig-p p-green"><b>8 a. m.</b><small>abrimos todos los días</small></div>
-                  <div class="ig-p p-terra"><svg><use href="#i-cup" /></svg><small>tu tarde, mejor</small></div>
-                  <div class="ig-p p-cream"><small class="menu">Carta<br />Espresso · 7<br />Latte · 11<br />Torta · 14</small></div>
-                  <div class="ig-p p-green"><svg><use href="#i-cake" /></svg><small>postres de la casa</small></div>
-                  <div class="ig-p p-terra"><b>Delivery</b><small>Barranco y Miraflores</small></div>
+                  <div class="ig-p r-barber"><em>Barbería</em><svg><use href="#i-cut" /></svg><b>Corte + barba</b><small>S/35</small></div>
+                  <div class="ig-p r-ropa"><em>Ropa</em><svg><use href="#i-shirt" /></svg><b>Nueva colección</b></div>
+                  <div class="ig-p r-cafe"><em>Cafetería</em><svg><use href="#i-cup" /></svg><b>2×1 capuchinos</b></div>
+                  <div class="ig-p r-resto"><em>Restaurante</em><svg><use href="#i-bowl" /></svg><b>Menú del día</b><small>S/15</small></div>
+                  <div class="ig-p r-gym"><em>Gimnasio</em><svg><use href="#i-gym" /></svg><b>1.ª clase gratis</b></div>
+                  <div class="ig-p r-paste"><em>Pastelería</em><svg><use href="#i-cake" /></svg><b>Tortas por pedido</b></div>
+                  <div class="ig-p r-belleza"><em>Belleza</em><svg><use href="#i-nail" /></svg><b>Uñas acrílicas</b></div>
+                  <div class="ig-p r-inmo"><em>Inmobiliaria</em><svg><use href="#i-house" /></svg><b>Depas en Surco</b></div>
+                  <div class="ig-p r-taller"><em>Taller</em><svg><use href="#i-wrench" /></svg><b>Cambio de aceite</b></div>
                 </div>
               </div>
             </div>
             <div class="wa-cat-card">
-              <p class="wcc-head"><span class="wcc-av">CM</span><b>Catálogo</b></p>
+              <p class="wcc-head"><span class="wcc-av"><svg><use href="#tm-logo" /></svg></span><span><b>Tu Marca</b><small>Catálogo</small></span></p>
               <div class="wcc-items">
-                <p><span class="wcc-img p-green"><svg><use href="#i-cup" /></svg></span>Capuchino<small>S/ 11.00</small></p>
-                <p><span class="wcc-img p-cream"><svg><use href="#i-cake" /></svg></span>Cheesecake<small>S/ 14.00</small></p>
-                <p><span class="wcc-img p-terra"><svg><use href="#i-bean" /></svg></span>Café 250 g<small>S/ 38.00</small></p>
+                <p><span class="wcc-img r-ropa"><svg><use href="#i-shirt" /></svg></span>Tu producto estrella<small>S/ 59.00</small></p>
+                <p><span class="wcc-img r-barber"><svg><use href="#i-cut" /></svg></span>Servicio más pedido<small>S/ 35.00</small></p>
+                <p><span class="wcc-img r-paste"><svg><use href="#i-cake" /></svg></span>Combo o promoción<small>S/ 89.00</small></p>
               </div>
+              <span class="wcc-btn">Ver catálogo completo</span>
             </div>
-            <p class="art-badge mono">Negocio de ejemplo</p>
+            <p class="art-badge mono">Ejemplos de distintos rubros</p>
           </div>
           <div class="panel-copy">
             <h3>Kit comercial digital</h3>
-            <p class="panel-lead">Si hoy no tienes redes, las creamos; si están abandonadas, las ordenamos. Al final tu negocio se ve así de listo para vender, y con tus tarjetas impresas.</p>
+            <p class="panel-lead">Si hoy no tienes redes, las creamos; si están abandonadas, las ordenamos. Tu perfil queda con logo, una descripción que resalta lo tuyo, tu WhatsApp y tu catálogo, listo para vender.</p>
             <ol class="timeline">
               <li><span class="mono">Día 1</span><b>Diagnóstico</b><span class="tl-text">Revisamos lo que tienes o empezamos desde cero.</span></li>
               <li><span class="mono">Días 2–3</span><b>Perfiles</b><span class="tl-text">Instagram, Facebook y WhatsApp Business con foto, portada, bio y destacadas.</span></li>
@@ -695,7 +715,7 @@
           </div>
         </div>
 
-        <!-- Captación: anuncio en Instagram → consultas en WhatsApp -->
+        <!-- Captación: tu anuncio → consultas en tu WhatsApp -->
         <div class="panel" role="tabpanel" id="panel-captacion" aria-labelledby="tab-captacion" hidden>
           <div class="panel-art art-ads" aria-hidden="true">
             <div class="ads-phones">
@@ -703,16 +723,16 @@
                 <div class="px-screen">
                   <div class="px-status"><b>15:40</b><span class="px-island"></span><span class="px-bat"></span></div>
                   <div class="ig-bar"><b class="ig-logo">Instagram</b><span class="ig-icons"><i></i><i></i></span></div>
-                  <div class="ad-head"><span class="ig-av sm">CM</span><p><b>cafemolle.pe</b><small>Publicidad</small></p><span class="ig-dots"></span></div>
-                  <div class="ad-creative p-green">
-                    <svg><use href="#i-cup" /></svg>
-                    <b>2×1 en capuchinos</b>
-                    <small>Hoy de 3 a 6 p. m. · Barranco</small>
+                  <div class="ad-head"><span class="ig-av sm"><svg><use href="#tm-logo" /></svg></span><p><b>tumarca.pe</b><small>Publicidad</small></p><span class="ig-dots"></span></div>
+                  <div class="ad-creative">
+                    <svg class="ad-logo"><use href="#tm-logo" /></svg>
+                    <b>20% OFF<br />en tu primera compra</b>
+                    <small>Solo esta semana · Lima</small>
                   </div>
                   <div class="ad-cta"><span>Enviar mensaje de WhatsApp</span><i>›</i></div>
                   <div class="ad-actions"><i class="heart"></i><i class="bubble"></i><i class="send"></i></div>
-                  <p class="ad-likes">Les gusta a <b>214 personas</b></p>
-                  <p class="ad-cap"><b>cafemolle.pe</b> Tu café de la tarde, al doble. Escríbenos y te lo tenemos listo ☕</p>
+                  <p class="ad-likes">Les gusta a <b>486 personas</b></p>
+                  <p class="ad-cap"><b>tumarca.pe</b> Lo que te hace único, ahora con descuento. Escríbenos y te atendemos al toque 👇</p>
                 </div>
               </div>
               <div class="phone-x phone-tilt-r">
@@ -720,13 +740,13 @@
                   <div class="px-status"><b>15:42</b><span class="px-island"></span><span class="px-bat"></span></div>
                   <div class="wa-top"><b>WhatsApp Business</b><span class="wa-filter"><i class="on">Todos</i><i>No leídos 4</i></span></div>
                   <ul class="wa-list">
-                    <li><span class="wa-av a1">L</span><p><b>Lucía</b><small>Hola, vi su anuncio. ¿Hasta qué hora atienden?</small></p><span class="wa-meta">15:42<i>1</i></span></li>
-                    <li><span class="wa-av a2">A</span><p><b>Andrés</b><small>¿Hacen delivery a Miraflores?</small></p><span class="wa-meta">15:41<i>2</i></span></li>
-                    <li><span class="wa-av a3">C</span><p><b>Carla</b><small>Quiero reservar para 4 el sábado 🙌</small></p><span class="wa-meta">15:39<i>1</i></span></li>
-                    <li><span class="wa-av a4">M</span><p><b>+51 9•• ••• 214</b><small>¿Cuánto cuesta el cheesecake entero?</small></p><span class="wa-meta">15:36<i>1</i></span></li>
-                    <li class="read"><span class="wa-av a5">J</span><p><b>Jorge</b><small>Gracias, ya voy para allá</small></p><span class="wa-meta">15:20</span></li>
+                    <li><span class="wa-av"><svg><use href="#i-user" /></svg></span><p><b>+51 987 214 563</b><small>Hola, vi su anuncio. ¿Tienen stock?</small></p><span class="wa-meta">15:42<i>1</i></span></li>
+                    <li><span class="wa-av"><svg><use href="#i-user" /></svg></span><p><b>+51 954 830 127</b><small>¿Hacen delivery a Miraflores?</small></p><span class="wa-meta">15:41<i>2</i></span></li>
+                    <li><span class="wa-av"><svg><use href="#i-user" /></svg></span><p><b>+51 912 476 058</b><small>¿Cuál es el precio con el descuento?</small></p><span class="wa-meta">15:39<i>1</i></span></li>
+                    <li><span class="wa-av"><svg><use href="#i-user" /></svg></span><p><b>+51 998 361 742</b><small>Quiero más información 🙌</small></p><span class="wa-meta">15:36<i>1</i></span></li>
+                    <li class="read"><span class="wa-av"><svg><use href="#i-user" /></svg></span><p><b>+51 945 117 290</b><small>Gracias, ya hice mi pedido</small></p><span class="wa-meta">15:20</span></li>
                   </ul>
-                  <span class="wa-tag mono">Desde el anuncio</span>
+                  <span class="wa-tag mono">Desde tu anuncio</span>
                 </div>
               </div>
             </div>
@@ -738,7 +758,7 @@
           </div>
           <div class="panel-copy">
             <h3>Captación de clientes</h3>
-            <p class="panel-lead">Tú no pones un sol aparte para anuncios: el presupuesto ya está dentro del plan. Nosotros decidimos dónde invertirlo y te mostramos en qué se usó.</p>
+            <p class="panel-lead">Tú no pones un sol aparte para anuncios: el presupuesto ya está dentro del plan. Tu anuncio sale con tu marca y las consultas llegan directo a tu WhatsApp.</p>
             <ol class="timeline">
               <li><span class="mono">Semana 1</span><b>Público y oferta</b><span class="tl-text">Definimos a quién hablarle, qué ofrecer y si va en Meta o TikTok.</span></li>
               <li><span class="mono">Semana 1</span><b>Creatividades</b><span class="tl-text">Dos piezas pensadas para que la gente escriba, no solo para likes.</span></li>
@@ -749,25 +769,47 @@
           </div>
         </div>
 
-        <!-- Crecimiento: embudo en 3D -->
+        <!-- Crecimiento: embudo de ventas en 3D -->
         <div class="panel" role="tabpanel" id="panel-crecimiento" aria-labelledby="tab-crecimiento" hidden>
           <div class="panel-art art-funnel" aria-hidden="true">
-            <svg class="funnel3d" id="funnel3d" viewBox="0 0 440 360">
+            <svg class="funnel3d" id="funnel3d" viewBox="0 0 460 390">
+              <defs>
+                <symbol id="f-eye" viewBox="-12 -12 24 24"><path d="M-10 0c5-7 15-7 20 0-5 7-15 7-20 0z" fill="none" stroke="currentColor" stroke-width="2" /><circle r="3.2" fill="currentColor" /></symbol>
+                <symbol id="f-heart" viewBox="-12 -12 24 24"><path d="M0 9s-9-5.5-9-11a4.8 4.8 0 0 1 9-2.4A4.8 4.8 0 0 1 9-2c0 5.5-9 11-9 11z" fill="currentColor" /></symbol>
+                <symbol id="f-chat" viewBox="-12 -12 24 24"><path d="M-9-7h18v12h-9l-6 5v-5h-3z" fill="currentColor" /></symbol>
+              </defs>
+              <g class="f-src">
+                <g transform="translate(44 18)"><rect x="-32" y="-11" width="64" height="22" rx="11" /><text y="4" text-anchor="middle">META ADS</text></g>
+                <g transform="translate(130 18)"><rect x="-34" y="-11" width="68" height="22" rx="11" /><text y="4" text-anchor="middle">INSTAGRAM</text></g>
+                <g transform="translate(218 18)"><rect x="-34" y="-11" width="68" height="22" rx="11" /><text y="4" text-anchor="middle">TIKTOK ADS</text></g>
+                <g transform="translate(296 18)"><rect x="-24" y="-11" width="48" height="22" rx="11" /><text y="4" text-anchor="middle">GOOGLE</text></g>
+              </g>
               <g class="f-back"></g>
               <g class="f-pb"></g>
               <g class="f-sides"></g>
+              <g class="f-icons">
+                <g class="f-ic f-ic-0" transform="translate(170 128)"><circle r="15" /><use href="#f-eye" x="-10" y="-10" width="20" height="20" /></g>
+                <g class="f-ic f-ic-1" transform="translate(170 220)"><circle r="13" /><use href="#f-heart" x="-9" y="-9" width="18" height="18" /></g>
+                <g class="f-ic f-ic-2" transform="translate(170 288)"><circle r="10" /><use href="#f-chat" x="-7" y="-7" width="14" height="14" /></g>
+              </g>
               <g class="f-parts"></g>
               <g class="f-front"></g>
-              <g class="f-labels">
-                <g class="f-lab" transform="translate(322 58)"><text class="f-t">Te conocen</text><text class="f-s" y="17">SEMANAS 1–2</text></g>
-                <g class="f-lab" transform="translate(322 156)"><text class="f-t">Te consideran</text><text class="f-s" y="17">SEMANAS 3–5</text></g>
-                <g class="f-lab" transform="translate(322 246)"><text class="f-t">Te escriben</text><text class="f-s" y="17">SEMANAS 6–8</text></g>
+              <g class="f-rates">
+                <g transform="translate(40 180)"><rect x="-26" y="-11" width="52" height="22" rx="4" /><text y="4" text-anchor="middle">↓ 12%</text></g>
+                <g transform="translate(84 264)"><rect x="-26" y="-11" width="52" height="22" rx="4" /><text y="4" text-anchor="middle">↓ 6%</text></g>
               </g>
-              <g class="f-wa" transform="translate(160 330)">
-                <circle r="20" />
-                <path d="M-8 9l2-6a10 10 0 1 1 4 4z" />
+              <g class="f-labels">
+                <g class="f-lab f-lab-0" transform="translate(330 70)"><text class="f-t">Te conocen</text><text class="f-s" y="15">PÚBLICO FRÍO</text><text class="f-m" y="40" data-to="18400">0</text><text class="f-u" x="0" y="54">personas alcanzadas</text></g>
+                <g class="f-lab f-lab-1" transform="translate(330 170)"><text class="f-t">Te consideran</text><text class="f-s" y="15">PÚBLICO TIBIO</text><text class="f-m" y="40" data-to="2150">0</text><text class="f-u" y="54">interacciones</text></g>
+                <g class="f-lab f-lab-2" transform="translate(330 254)"><text class="f-t">Te escriben</text><text class="f-s" y="15">PÚBLICO CALIENTE</text><text class="f-m" y="40" data-to="126">0</text><text class="f-u" y="54">mensajes a WhatsApp</text></g>
+              </g>
+              <g class="f-wa" transform="translate(170 350)">
+                <circle r="21" />
+                <path d="M-8.5 8.5l1.7-5A9 9 0 1 1 -3.4 7z" />
+                <text class="f-wa-n" x="30" y="5">Ventas</text>
               </g>
             </svg>
+            <p class="f-note mono">Cifras de ejemplo · cada negocio tiene las suyas</p>
             <div class="wa-flow">
               <p class="mono">Estructura de venta en WhatsApp</p>
               <ol><li>Bienvenida</li><li>Catálogo</li><li>Etiqueta</li><li>Cierre</li></ol>
@@ -775,11 +817,11 @@
           </div>
           <div class="panel-copy">
             <h3>Crecimiento comercial</h3>
-            <p class="panel-lead">Venderle directo a quien nunca te vio cuesta caro. Por eso armamos tres campañas encadenadas: la tercera le habla a quien ya te vio dos veces.</p>
+            <p class="panel-lead">Venderle directo a quien nunca te vio cuesta caro. Por eso armamos un embudo: tres campañas encadenadas que calientan al público hasta que te escribe y compra.</p>
             <ol class="timeline">
               <li><span class="mono">Semanas 1–2</span><b>Te conocen</b><span class="tl-text">Presentamos tu marca a gente nueva de tu zona y tu rubro.</span></li>
-              <li><span class="mono">Semanas 3–5</span><b>Te consideran</b><span class="tl-text">Contenido de valor para quienes ya te vieron.</span></li>
-              <li><span class="mono">Semanas 6–8</span><b>Te escriben</b><span class="tl-text">Oferta directa que termina en tu WhatsApp.</span></li>
+              <li><span class="mono">Semanas 3–5</span><b>Te consideran</b><span class="tl-text">Contenido de valor y testimonios para quienes ya te vieron.</span></li>
+              <li><span class="mono">Semanas 6–8</span><b>Te escriben</b><span class="tl-text">Oferta directa para el público caliente, que termina en tu WhatsApp.</span></li>
               <li><span class="mono">Siempre</span><b>Cierre por WhatsApp</b><span class="tl-text">Bienvenida, catálogo, etiquetas para cada cliente y guion para cerrar la venta.</span></li>
             </ol>
             <div class="panel-buy"><p class="panel-price">S/1,890<small>al mes · S/600 de anuncios incluidos</small></p><a class="btn btn-light plan-link" href="#contacto" data-plan="Crecimiento comercial — S/1,890/mes">Quiero crecer <span aria-hidden="true">↗</span></a></div>
@@ -895,18 +937,44 @@
           <p class="kicker mono">08 / Empecemos</p>
           <h2 id="contact-title">Tu siguiente movimiento empieza aquí.</h2>
           <p>Cuéntanos qué necesitas. Te ayudamos a definir si conviene empezar por tu identidad, ordenar tus redes o lanzar campañas.</p>
-          <ul class="contact-points">
-            <li>
-              <span class="cp-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 1 1 6.99 3.86Z"/></svg></span>
-              <span><b>Respuesta por WhatsApp el mismo día</b>Te escribimos para coordinar, sin vueltas.</span>
+          <!-- Tres promesas en 3D: se inclinan con el mouse y se mueven solas en el teléfono -->
+          <ul class="perks">
+            <li class="perk perk-wa">
+              <div class="perk-in">
+                <span class="perk-n mono">01 · WhatsApp</span>
+                <div class="perk-art" aria-hidden="true">
+                  <span class="pw-logo"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 1 1 6.99 3.86Z"/></svg></span>
+                  <span class="pw-b1"><i></i><i></i><i></i></span>
+                  <span class="pw-b2">¡Hola! Te respondemos hoy 👋</span>
+                </div>
+                <b class="perk-v">Hoy</b>
+                <p class="perk-t">Respuesta por WhatsApp el mismo día</p>
+                <p class="perk-d">Te escribimos para coordinar, sin vueltas.</p>
+              </div>
             </li>
-            <li>
-              <span class="cp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="1.6" fill="currentColor" /><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3" stroke-width="1.5" /></svg></span>
-              <span><b>Diagnóstico gratis de 5 minutos</b>Miramos tus redes y te decimos una mejora concreta.</span>
+            <li class="perk perk-dx">
+              <div class="perk-in">
+                <span class="perk-n mono">02 · Diagnóstico</span>
+                <div class="perk-art" aria-hidden="true">
+                  <span class="pm-radar"><i></i><i></i><i></i><b></b><em></em></span>
+                  <span class="pm-clock mono" data-countdown>5:00</span>
+                </div>
+                <b class="perk-v">5 min</b>
+                <p class="perk-t">Diagnóstico gratis de tus redes</p>
+                <p class="perk-d">Miramos tus redes y te decimos una mejora concreta.</p>
+              </div>
             </li>
-            <li>
-              <span class="cp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2.5h8l4 4v15H6z" /><path d="M14 2.5v4h4M9 11h6M9 14.5h6M9 18h4" /></svg></span>
-              <span><b>Propuesta en 48 horas</b>En una página: qué incluye, cuánto cuesta y cuándo empieza.</span>
+            <li class="perk perk-doc">
+              <div class="perk-in">
+                <span class="perk-n mono">03 · Propuesta</span>
+                <div class="perk-art" aria-hidden="true">
+                  <span class="pd-sheet"></span><span class="pd-sheet"></span>
+                  <span class="pd-sheet pd-top"><b>Propuesta</b><i></i><i></i><i></i><em>S/ ···</em><u>✓</u></span>
+                </div>
+                <b class="perk-v">48 h</b>
+                <p class="perk-t">Propuesta clara en una página</p>
+                <p class="perk-d">Qué incluye, cuánto cuesta y cuándo empieza.</p>
+              </div>
             </li>
           </ul>
         </div>
@@ -984,6 +1052,6 @@
 
   <div role="status" aria-live="polite" id="toast" class="toast"></div>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

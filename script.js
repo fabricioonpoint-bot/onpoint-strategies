@@ -788,14 +788,16 @@ openTab("tarjetas");
   }, 3000);
 })();
 
-// Crecimiento: embudo en 3D con clientes que bajan en espiral hasta tu WhatsApp
+// Crecimiento: embudo de ventas en 3D. El público cae desde los anuncios, se calienta
+// (frío → tibio → caliente) y termina en tu WhatsApp; las cifras suben mientras se ve.
 (function funnel3d() {
   const svg = document.getElementById("funnel3d");
   if (!svg) return;
   const NS = "http://www.w3.org/2000/svg";
   const panel = document.getElementById("panel-crecimiento");
-  const CX = 160;
-  const L = [{ y: 62, r: 140 }, { y: 160, r: 96 }, { y: 250, r: 54 }, { y: 304, r: 14 }];
+  const CX = 170;
+  const L = [{ y: 78, r: 140 }, { y: 178, r: 96 }, { y: 262, r: 54 }, { y: 316, r: 14 }];
+  const COLORS = ["#7fb2ff", "#ffb547", "#ff5a36", "#25d366"];
   const g = (c) => svg.querySelector("." + c);
   const mk = (tag, cls, parent, attrs = {}) => {
     const e = document.createElementNS(NS, tag);
@@ -804,14 +806,27 @@ openTab("tarjetas");
     parent.appendChild(e);
     return e;
   };
-  const backs = L.slice(0, 3).map(() => mk("path", "f-ring", g("f-back")));
-  const fronts = L.slice(0, 3).map(() => mk("path", "f-ring", g("f-front")));
+  // Degradados de cada tramo del embudo
+  const defs = svg.querySelector("defs");
+  COLORS.slice(0, 3).forEach((c, i) => {
+    const lg = mk("linearGradient", "", defs, { id: "f-g" + i, x1: "0", y1: "0", x2: "0", y2: "1" });
+    mk("stop", "", lg, { offset: "0", "stop-color": c, "stop-opacity": "0.04" });
+    mk("stop", "", lg, { offset: "1", "stop-color": COLORS[i + 1], "stop-opacity": "0.16" });
+  });
+  const backs = L.slice(0, 3).map((_, i) => mk("path", "f-ring l" + i, g("f-back")));
+  const fronts = L.slice(0, 3).map((_, i) => mk("path", "f-ring l" + i, g("f-front")));
   const bands = L.slice(0, 3).map((_, i) => mk("path", "f-band f-band-" + i, g("f-sides")));
-  L.slice(0, 3).forEach((l, i) => mk("path", "f-lead", g("f-labels"), { d: `M${CX + l.r + 8} ${l.y}H${314}` }));
+  L.slice(0, 3).forEach((l) => mk("path", "f-lead", g("f-labels"), { d: `M${CX + l.r + 8} ${l.y}H322` }));
   const wa = g("f-wa");
   const stepEls = [...panel.querySelectorAll(".wa-flow li")];
-  const N = 24;
-  const dots = Array.from({ length: N }, (_, i) => ({ p: i / N, a: (i * 2.399) % (Math.PI * 2), el: mk("circle", "f-dot", g("f-parts"), { r: 2.4 }) }));
+  const metrics = [...svg.querySelectorAll(".f-m")].map((el) => ({ el, to: +el.dataset.to }));
+  const fmt = (n) => Math.round(n).toLocaleString("en-US");
+  const DROP = 0.14; // tramo en que cae desde los anuncios
+  const N = 30;
+  const dots = Array.from({ length: N }, (_, i) => ({
+    p: i / N, a: (i * 2.399) % (Math.PI * 2), sx: 20 + ((i * 97) % 300),
+    el: mk("circle", "f-dot", g("f-parts"), { r: 2.6 }),
+  }));
   const f1 = (v) => v.toFixed(1);
   const radiusAt = (y) => {
     for (let i = 0; i < L.length - 1; i++) {
@@ -819,7 +834,8 @@ openTab("tarjetas");
     }
     return L[L.length - 1].r;
   };
-  let tilt = 0, tiltT = 0, last = 0, running = false, visible = false, arrivals = 0;
+  const colorAt = (y) => (y < L[1].y ? COLORS[0] : y < L[2].y ? COLORS[1] : y < L[3].y - 6 ? COLORS[2] : COLORS[3]);
+  let tilt = 0, tiltT = 0, last = 0, running = false, visible = false, arrivals = 0, shownAt = 0;
   function frame(now) {
     const dt = Math.min(0.05, (now - (last || now)) / 1000);
     last = now;
@@ -833,30 +849,48 @@ openTab("tarjetas");
       bands[i].setAttribute("d", `M${CX - l.r} ${l.y}L${CX - n.r} ${n.y}A${n.r} ${f1(nry)} 0 0 0 ${CX + n.r} ${n.y}L${CX + l.r} ${l.y}A${l.r} ${f1(ry)} 0 0 1 ${CX - l.r} ${l.y}Z`);
     });
     dots.forEach((d) => {
-      d.p += dt * 0.07;
+      d.p += dt * 0.065;
       if (d.p >= 1) {
         d.p -= 1;
         wa.classList.remove("ping"); void wa.getBBox(); wa.classList.add("ping");
         arrivals++;
         stepEls.forEach((s, i) => s.classList.toggle("on", i === arrivals % stepEls.length));
       }
-      const y = L[0].y + (L[3].y - L[0].y) * d.p;
-      const r = radiusAt(y);
-      const th = d.a + d.p * Math.PI * 6;
-      const front = Math.sin(th) > 0;
+      let x, y, front = true;
+      if (d.p < DROP) {
+        // cae desde la fila de anuncios hasta el borde del embudo
+        const q = d.p / DROP, ease = q * q;
+        const tx = CX + L[0].r * Math.cos(d.a);
+        x = d.sx + (tx - d.sx) * q;
+        y = 30 + (L[0].y + L[0].r * k * Math.sin(d.a) - 30) * ease;
+        front = Math.sin(d.a) > 0;
+      } else {
+        const q = (d.p - DROP) / (1 - DROP);
+        const yy = L[0].y + (L[3].y - L[0].y) * q;
+        const r = radiusAt(yy);
+        const th = d.a + q * Math.PI * 6;
+        front = Math.sin(th) > 0;
+        x = CX + r * Math.cos(th);
+        y = yy + r * k * Math.sin(th);
+      }
       const parent = front ? g("f-parts") : g("f-pb");
-      if (d.el.parentNode !== parent) { parent.appendChild(d.el); d.el.setAttribute("r", front ? 2.8 : 1.8); }
-      d.el.setAttribute("cx", f1(CX + r * Math.cos(th)));
-      d.el.setAttribute("cy", f1(y + r * k * Math.sin(th)));
-      d.el.setAttribute("opacity", f1(Math.min(1, d.p * 8, (1 - d.p) * 10)));
+      if (d.el.parentNode !== parent) { parent.appendChild(d.el); d.el.setAttribute("r", front ? 2.8 : 1.9); }
+      d.el.setAttribute("cx", f1(x));
+      d.el.setAttribute("cy", f1(y));
+      d.el.setAttribute("fill", colorAt(y));
+      d.el.setAttribute("opacity", f1(Math.min(1, d.p * 14, (1 - d.p) * 10)));
     });
+    // Las cifras suben en ~2.5 s cada vez que se abre la pestaña
+    const t = Math.min(1, (now - shownAt) / 2500), e = 1 - Math.pow(1 - t, 3);
+    metrics.forEach((m) => { m.el.textContent = fmt(m.to * e); });
     if (running) requestAnimationFrame(frame);
   }
   const sync = () => {
     const should = visible && !panel.hidden && !reducedMotion;
-    if (should && !running) { running = true; last = 0; requestAnimationFrame(frame); }
+    if (should && !running) { running = true; last = 0; shownAt = performance.now(); requestAnimationFrame(frame); }
     if (!should) running = false;
   };
+  shownAt = -1e9;
   frame(0);
   if (reducedMotion) return;
   new IntersectionObserver((es) => { visible = es[0].isIntersecting; sync(); }).observe(svg);
@@ -867,7 +901,8 @@ openTab("tarjetas");
   });
 })();
 
-// Preguntas: la lupa sigue el mouse (o la inclinación del teléfono) y lee la letra pequeña
+// Preguntas: la lupa sigue el mouse; en el teléfono se arrastra con el dedo o se mueve al
+// inclinarlo. Sin interacción recorre sola la letra pequeña.
 (function lens() {
   const svg = document.getElementById("lens");
   if (!svg) return;
@@ -877,7 +912,7 @@ openTab("tarjetas");
   const section = document.getElementById("preguntas");
   const BASE = { x: 150, y: 104 };
   const BOX = { x0: 70, x1: 205, y0: 52, y1: 150 };
-  let x = BASE.x, y = BASE.y, tx = x, ty = y, lastInput = -1e9, running = false, visible = false;
+  let x = BASE.x, y = BASE.y, tx = x, ty = y, lastInput = -1e9, running = false, visible = false, dragging = false;
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const place = () => {
     clip.setAttribute("cx", x.toFixed(1));
@@ -886,12 +921,12 @@ openTab("tarjetas");
   };
   function frame(now) {
     if (now - lastInput > 2500) {
-      // Sin interacción: recorre las líneas sola, despacio
       tx = 137 + 62 * Math.sin(now / 2300);
       ty = 101 + 44 * Math.sin(now / 3100 + 1);
     }
-    x += (tx - x) * 0.08;
-    y += (ty - y) * 0.08;
+    const f = dragging ? 0.35 : 0.08;
+    x += (tx - x) * f;
+    y += (ty - y) * f;
     place();
     if (running) requestAnimationFrame(frame);
   }
@@ -902,33 +937,78 @@ openTab("tarjetas");
   place();
   if (reducedMotion) return;
   new IntersectionObserver((es) => { visible = es[0].isIntersecting; sync(); }).observe(svg);
-  section.addEventListener("pointermove", (e) => {
-    if (e.pointerType === "touch") return;
+  const toSvg = (e) => {
     const r = svg.getBoundingClientRect();
     const sx = 300 / r.width;
     tx = clamp((e.clientX - r.left) * sx, BOX.x0, BOX.x1);
     ty = clamp((e.clientY - r.top) * sx, BOX.y0, BOX.y1);
     lastInput = performance.now();
+  };
+  // Computadora: sigue al mouse en toda la sección
+  section.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") toSvg(e); });
+  // Teléfono: arrastrar la lupa con el dedo (siempre funciona)
+  svg.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse") return;
+    dragging = true;
+    svg.setPointerCapture(e.pointerId);
+    toSvg(e);
   });
-  // Teléfono: la lupa se mueve al inclinarlo
+  svg.addEventListener("pointermove", (e) => { if (dragging) toSvg(e); });
+  const stop = () => { dragging = false; };
+  svg.addEventListener("pointerup", stop);
+  svg.addEventListener("pointercancel", stop);
+  // Teléfono: además se mueve al inclinarlo (si el navegador lo permite)
+  const isTouch = window.matchMedia("(pointer: coarse)").matches;
+  if (!isTouch) return;
+  if (hint) hint.textContent = "Arrastra la lupa con el dedo o inclina tu teléfono";
+  let base = null;
   const onTilt = (e) => {
-    if (e.gamma == null) return;
-    tx = clamp(BASE.x + e.gamma * 3, BOX.x0, BOX.x1);
-    ty = clamp(BASE.y + (e.beta - 45) * 2.2, BOX.y0, BOX.y1);
+    if (e.gamma == null || dragging) return;
+    if (!base) base = { b: e.beta, g: e.gamma };   // la posición en que lo sostienes es el centro
+    tx = clamp(BASE.x + (e.gamma - base.g) * 3.2, BOX.x0, BOX.x1);
+    ty = clamp(BASE.y + (e.beta - base.b) * 2.6, BOX.y0, BOX.y1);
     lastInput = performance.now();
   };
-  const isTouch = window.matchMedia("(pointer: coarse)").matches;
-  if (!isTouch || !("DeviceOrientationEvent" in window)) return;
-  if (hint) hint.textContent = "Inclina tu teléfono";
-  const needsPermission = typeof DeviceOrientationEvent.requestPermission === "function";
-  if (!needsPermission) { window.addEventListener("deviceorientation", onTilt); return; }
-  // iPhone: pide permiso al primer toque sobre la lupa
-  if (hint) hint.textContent = "Toca la lupa e inclina tu teléfono";
-  svg.addEventListener("click", () => {
-    DeviceOrientationEvent.requestPermission().then((s) => {
-      if (s === "granted") window.addEventListener("deviceorientation", onTilt);
-    }).catch(() => {});
-  }, { once: true });
+  if (!("DeviceOrientationEvent" in window)) return;
+  if (typeof DeviceOrientationEvent.requestPermission === "function") {
+    // iPhone: el permiso se pide con el primer toque en la sección de preguntas
+    section.addEventListener("click", () => {
+      DeviceOrientationEvent.requestPermission().then((st) => {
+        if (st === "granted") window.addEventListener("deviceorientation", onTilt);
+      }).catch(() => {});
+    }, { once: true });
+  } else {
+    window.addEventListener("deviceorientation", onTilt);
+  }
+})();
+
+// Contacto: las tres promesas se inclinan con el mouse; el diagnóstico cuenta sus 5 minutos
+(function perks() {
+  const cards = [...document.querySelectorAll(".perk")];
+  if (!cards.length || reducedMotion) return;
+  cards.forEach((card) => {
+    const inner = card.querySelector(".perk-in");
+    card.addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse") return;
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      inner.style.setProperty("--ry", `${((px - 0.5) * 22).toFixed(1)}deg`);
+      inner.style.setProperty("--rx", `${((0.5 - py) * 18).toFixed(1)}deg`);
+      inner.style.setProperty("--gx", `${(px * 100).toFixed(0)}%`);
+      inner.style.setProperty("--gy", `${(py * 100).toFixed(0)}%`);
+    });
+    card.addEventListener("pointerleave", () => {
+      ["--rx", "--ry"].forEach((v) => inner.style.setProperty(v, "0deg"));
+      inner.style.setProperty("--gy", "0%");
+    });
+  });
+  const clock = document.querySelector("[data-countdown]");
+  if (!clock) return;
+  let left = 300;
+  setInterval(() => {
+    left = left <= 0 ? 300 : left - 5;
+    clock.textContent = `${Math.floor(left / 60)}:${String(left % 60).padStart(2, "0")}`;
+  }, 100);
 })();
 
 /* ---------- Versión de teléfono: menos texto, más imagen ---------- */
