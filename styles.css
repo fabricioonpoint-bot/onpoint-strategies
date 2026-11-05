@@ -826,16 +826,11 @@ p { margin: 0; }
 }
 
 /* Para quién: ilustraciones de línea en el estilo de la marca */
-.aud-art { margin: -28px -28px 20px; background: var(--blanco); border-bottom: 1px solid var(--linea); padding: 24px 24px 0; }
-.aud-art svg { width: 100%; height: auto; display: block; }
-.a-line { fill: none; stroke: var(--negro); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-.a-awning { fill: var(--negro); }
-.a-fill { fill: var(--humo); stroke: var(--negro); stroke-width: 2; }
-.a-glass { fill: var(--papel); stroke: var(--negro); stroke-width: 2; }
-.a-dot { fill: var(--negro); }
-.a-sign circle:first-child { fill: none; stroke: var(--plomo); stroke-width: 3; }
-.a-sign circle:last-child { fill: var(--plomo); }
-.a-trend { stroke-width: 3; }
+.aud-photo { position: relative; margin: -28px -28px 22px; aspect-ratio: 16 / 10; overflow: hidden; background: var(--humo); }
+.aud-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.02); transition: transform 1.2s var(--ease), filter 0.6s; filter: saturate(0.92); }
+.aud-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(10, 10, 11, 0.35)); pointer-events: none; }
+.audience:hover .aud-photo img { transform: scale(1.08); filter: saturate(1.05); }
+.aud-note { margin-top: 14px; color: var(--plomo); font-size: 9.5px; text-align: right; }
 .aud-start { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--linea); color: var(--negro) !important; font-weight: 600; }
 .aud-start .mono { color: var(--plomo); font-weight: 500; margin-right: 8px; }
 
